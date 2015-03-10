@@ -1,0 +1,8 @@
+PaintWindow : scrollArea
+========================
+//  QScrollArea* scrollArea = new QScrollArea(_paintArea);
+//  scrollArea->setBackgroundRole(QPalette::Dark);
+//  scrollArea->setWidget(_paintArea);
+//  scrollArea->show();
+//  setCentralWidget(scrollArea);
+
