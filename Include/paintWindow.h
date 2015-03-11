@@ -30,6 +30,8 @@ class PaintWindow : public QMainWindow
     void quit(void);
   private slots :
     void _newFile(void);
+    void _openFile(void);
+    void _saveFile(void);
     void _about(void);
     void _aboutQt(void);
   private :
@@ -45,7 +47,7 @@ class PaintWindow : public QMainWindow
    QToolBar *_toolBar;
    QMenu *_fileMenu, *_toolMenu, *_helpMenu ;
    // actions
-   QAction *_newAct,*_openAct, *_exitAct, *_aboutAct, *_aboutQtAct;
+   QAction *_newAct, *_saveAct, *_openAct, *_exitAct, *_aboutAct, *_aboutQtAct;
    QActionGroup *_toolsQag;
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct;
    // mapping 

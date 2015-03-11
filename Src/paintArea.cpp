@@ -62,3 +62,11 @@ void PaintArea::setCurrentTool(int tool) {
   _currentTool = tool;
 }
 
+QPixmap PaintArea::getBuffer() {
+  return *_buffer;
+}
+
+void PaintArea::setBuffer(QPixmap buffer) {
+  _buffer = &buffer;
+}
+

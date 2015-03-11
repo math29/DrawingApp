@@ -1,0 +1,685 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"file",
+				"fileName"
+			],
+			[
+				"QP",
+				"QPixmap"
+			],
+			[
+				"sign",
+				"signal_Y_liste"
+			],
+			[
+				"si",
+				"signal_Y_liste"
+			],
+			[
+				"signal_",
+				"signal_X_liste"
+			],
+			[
+				"dra",
+				"draw_lissajou"
+			],
+			[
+				"Y",
+				"Y"
+			],
+			[
+				"Ch",
+				"Checkbutton"
+			],
+			[
+				"par",
+				"parameters"
+			],
+			[
+				"pa",
+				"parameters"
+			],
+			[
+				"set",
+				"setParameters"
+			],
+			[
+				"sa",
+				"save_pickler"
+			],
+			[
+				"Menu",
+				"MenuButton"
+			],
+			[
+				"menu",
+				"menuBar"
+			],
+			[
+				"plot",
+				"plot_signal"
+			],
+			[
+				"sig",
+				"signal_X"
+			],
+			[
+				"contr",
+				"control_params"
+			],
+			[
+				"Signal",
+				"signalParameters"
+			],
+			[
+				"var",
+				"var_dump"
+			],
+			[
+				"Ent",
+				"EntityBundle"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"Dashboard",
+				"Dashboard"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Src/main.cpp",
+			"settings":
+			{
+				"buffer_size": 643,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Src/paintWindow.cpp",
+			"settings":
+			{
+				"buffer_size": 5367,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Include/paintWindow.h",
+			"settings":
+			{
+				"buffer_size": 1207,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Src/paintArea.cpp",
+			"settings":
+			{
+				"buffer_size": 1698,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Include/paintArea.h",
+			"settings":
+			{
+				"buffer_size": 625,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "PaintWindow.qrc",
+			"settings":
+			{
+				"buffer_size": 180,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"twig",
+				"Set Syntax: HTML (Twig)"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 404.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/math/Documents/CAI/DrawingApp/.gitignore",
+		"/home/math/Documents/CAI/DrawingApp/Makefile",
+		"/F/Qt/PaintWindow-Sujet/Makefile",
+		"/F/Python/Oscillo-Project/README.txt",
+		"/F/Python/Oscillo-Project/generator.py",
+		"/C/Users/Mathieu/Downloads/lissajous3.py",
+		"/F/Python/Oscillo-Project/menuBar.py",
+		"/F/Python/Oscillo-Project/Sauvegardes/Default",
+		"/F/Python/Oscillo-Project/signalParameters.py",
+		"/C/Program Files (x86)/Git/doc/git/html/git-checkout.html",
+		"/F/Python/Oscillo-Project/timebase.py",
+		"/F/Python/Oscillo-Sujet/generator.py",
+		"/F/Python/Oscillo-Sujet/oscilloscope.py",
+		"/C/wamp/www/pentrez-site/web/Front/styles/vendor.css",
+		"/C/wamp/www/pentrez-site/app/Resources/views/base_admin.html.twig",
+		"/C/wamp/www/pentrez-site/src/Front/SiteBundle/Resources/views/site/slider.html.twig",
+		"/C/wamp/www/pentrez-site/robots.txt",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Resources/views/Dashboard/calendar.html.twig",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Entity/Repository/ContactRepository.php",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Entity/Contact.php",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Resources/views/Dashboard/messages.html.twig",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Controller/DashboardController.php",
+		"/C/wamp/www/pentrez-site/app/Resources/views/base.html.twig",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Resources/views/Dashboard/countAmountMessages.html.twig",
+		"/C/wamp/www/pentrez-site/app/config/parameters.yml",
+		"/C/wamp/www/pentrez-site/app/config/config.yml",
+		"/C/wamp/www/pentrez-site/app/AppKernel.php",
+		"/C/wamp/www/pentrez-site/web/Front/calendar/js/data.js",
+		"/C/wamp/www/pentrez-site/src/Front/SiteBundle/Controller/SiteController.php",
+		"/C/wamp/www/pentrez-site/web/Front/calendar/js/jquery.calendario.js",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Form/Handler/NewsFormHandler.php",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Resources/views/News/add.html.twig",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Form/Type/WeekFormType.php",
+		"/C/wamp/www/pentrez-site/src/Front/SiteBundle/Form/Type/ContactFormType.php",
+		"/C/wamp/www/pentrez-site/src/Front/SiteBundle/Resources/views/site/contact.html.twig",
+		"/C/wamp/www/pentrez-site/src/Front/SiteBundle/Form/Handler/ContactFormHandler.php",
+		"/C/wamp/www/pentrez-site/src/Front/SiteBundle/Resources/views/Email/mail.html.twig",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/email_system.html",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Controller/NewsController.php",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Entity/News.php",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Entity/Repository/WeekRepository.php",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Resources/views/News/list.html.twig",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Form/Handler/WeekFormHandler.php",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Resources/views/Dashboard/addWeek.html.twig",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Entity/Repository/NewsRepository.php",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Form/Type/NewsFormType.php",
+		"/C/wamp/www/pentrez-site/src/Front/SiteBundle/Resources/views/site/booking.html.twig",
+		"/C/wamp/www/pentrez-site/src/Front/SiteBundle/Resources/views/site/introducing.html.twig",
+		"/C/wamp/www/pentrez-site/src/Back/EntityBundle/Entity/Week.php",
+		"/C/Users/Mathieu/Documents/Design/Calendario/index.html",
+		"/C/Users/Mathieu/Documents/Design/Calendario/index2.html",
+		"/C/Users/Mathieu/Documents/Design/Calendario/js/data.js",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/form_validation.html",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/form_controls.html",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/components_pickers.html",
+		"/C/wamp/www/pentrez-site/src/Back/SiteBundle/Resources/views/Dashboard/index.html.twig",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/table_basic.html",
+		"/C/wamp/www/pentrez-site/web/Back/admin/pages/scripts/table-ajax.js",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/table_ajax.html",
+		"/C/wamp/www/pentrez-site/src/Back/UserBundle/Resources/views/Security/login.html.twig",
+		"/C/wamp/www/pentrez-site/web/Back/global/plugins/simple-line-icons/simple-line-icons.min.css",
+		"/C/wamp/www/pentrez-site/web/Back/admin/layout2/css/layout.css",
+		"/C/Users/Mathieu/Downloads/Simple-Line-Icons-Webfont/index.html",
+		"/C/Users/Mathieu/Documents/JoomlaTemplates/phoenix.nootheme.com/index.html",
+		"/C/Users/Mathieu/Documents/Design/marketing-Kad-E/index.html",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/css/bootstrap.min.css",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/js/bootstrap.min.js",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/css/pe-icon-7-stroke.css",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/css/font-awesome.min.css",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/css/style.css",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/css/style-dark.css",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/index.html",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/css/pageBlock.css",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/css/screen.css",
+		"/C/Users/Mathieu/Documents/Design/Marketing site/pageBlock.css",
+		"/C/Users/Mathieu/Documents/Design/www.edigitaldreams.com/vcard-jan31-2/site/single-page/home-typewriter.htm",
+		"/C/Users/Mathieu/Documents/Design/Tests/style.css",
+		"/C/Users/Mathieu/Documents/Design/activité partie 2/style.css",
+		"/C/Users/Mathieu/Downloads/abc2a72340757ef97fdd929538ac71710f50473a/index.html",
+		"/C/Users/Mathieu/Documents/Design/activité partie 2/index.html",
+		"/C/Users/Mathieu/AppData/Local/Temp/Temp1_activité partie 2.zip/activité partie 2/index.html",
+		"/C/Users/Mathieu/Documents/Design/activité partie 2/activité partie 2/index.html",
+		"/C/Users/Mathieu/Documents/Design/Tests/test.html",
+		"/C/Users/Mathieu/Documents/Design/test.html",
+		"/C/Users/Mathieu/Downloads/2d5c91f61eac275d823e7b3c497303efe1152e80/CSS_CV/CV-css.css",
+		"/C/Users/Mathieu/AppData/Local/Temp/Temp1_354675597bda66dccc3d7b9aac6a04b33789dd67.zip/Test/CV_Franck_Gonnin.html",
+		"/C/wamp/www/pentrez-site/src/Back/UserBundle/Resources/views/layout.html.twig.html",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/login_2.html",
+		"/C/wamp/www/pentrez-site/web/Back/global/css/components.css",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/layout_fluid_page.html",
+		"/C/wamp/www/pentrez-site/.gitignore",
+		"/C/wamp/www/pentrez-site/web/Back/admin/layout2/css/themes/grey.css",
+		"/C/wamp/www/pentrez-site/web/Back/admin/layout2/css/themes/default.css",
+		"/C/Users/Mathieu/Documents/Design/metronic/theme/templates/admin2/index.html",
+		"/C/wamp/www/pentrez-site/app/config/routing.yml",
+		"/C/wamp/www/pentrez-site/app/config/security.yml",
+		"/C/wamp/www/pentrez-site/composer.lock",
+		"/C/Users/Mathieu/Documents/Design/www.keenthemes.com/preview/metronic/theme/templates/admin2/page_calendar.html"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"F:\\Python\\Oscillo-Project",
+			"F:\\Python\\Oscillo-Sujet",
+			"C:\\wamp\\www\\pentrez-site",
+			"C:\\wamp\\www\\pentrez-site\\web\\Back",
+			"C:\\wamp\\www\\pentrez-site\\src\\Back",
+			"C:\\Users\\Mathieu\\Documents\\Design\\Marketing site\\css"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"XY",
+			"signal",
+			"print",
+			"100",
+			"1000",
+			"geo",
+			"ici",
+			"ici ",
+			" -",
+			"hauteur",
+			"lambda",
+			"lam",
+			"pi",
+			"sin",
+			"cos",
+			"h1",
+			"ipad_white",
+			"ipad",
+			"i^pad",
+			"white",
+			">\n",
+			"        $",
+			"blog",
+			"enum",
+			"datepicker-days",
+			"<td class=\"old day\">25</td>",
+			"<button class=\"btn default\" type=\"button\"><i class=\"fa fa-calendar\"></i></button>",
+			"<div class=\"input-group date date-picker\" data-date-format=\"dd-mm-yyyy\">\n													<input type=\"text\" class=\"form-control\" readonly=\"\" name=\"datepicker\">\n													<span class=\"input-group-btn\">\n													<button class=\"btn default\" type=\"button\"><i class=\"fa fa-calendar\"></i></button>",
+			"<div class=\"input-group date date-picker\" data-date-format=\"dd-mm-yyyy\">\n													<input type=\"text\" class=\"form-control\" readonly=\"\" name=\"datepicker\">\n													<span class=\"input-group-btn\">\n													<button class=\"btn default\" type=\"button\"><i class=\"fa fa-calendar\"></i></button>\n													</span>\n												</div>",
+			">\n",
+			"metronic",
+			"sidebar-toggler.png",
+			"Simple-Line-Icons.woff",
+			"layout",
+			"woff",
+			"images",
+			"form",
+			"e-icon-7-stroke.woff?d7yf1v Failed to load resource: net::ERR_FILE_NOT_FOUND",
+			"?",
+			"h1",
+			"?",
+			"f",
+			"?",
+			"bg1",
+			"img",
+			"bg1",
+			"bg1.jpg",
+			"img",
+			"jpg",
+			"481580-0-02.png",
+			"url( '//dfsm9194vna0o.cloudfront.net/481580-0-02.png' )",
+			"481665",
+			"48166",
+			"481665-0-pol",
+			"481665-0-poly.jpg",
+			"logo",
+			"Logo",
+			"{{ asset('Back/",
+			"../../assets",
+			"{{ asset('Back/",
+			"../../assets",
+			"fluid",
+			"theme-option",
+			"layout-option",
+			"boxed",
+			"fluid",
+			"boxed",
+			"font",
+			"awesome",
+			"{{ asset('Back",
+			"../../assets",
+			"new User",
+			"birthday",
+			"12aAll"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Src/main.cpp",
+					"settings":
+					{
+						"buffer_size": 643,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								439,
+								439
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Src/paintWindow.cpp",
+					"settings":
+					{
+						"buffer_size": 5367,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3216,
+								3216
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1312.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Include/paintWindow.h",
+					"settings":
+					{
+						"buffer_size": 1207,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								727,
+								727
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "Src/paintArea.cpp",
+					"settings":
+					{
+						"buffer_size": 1698,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1686,
+								1686
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "Include/paintArea.h",
+					"settings":
+					{
+						"buffer_size": 625,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								613,
+								613
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "PaintWindow.qrc",
+					"settings":
+					{
+						"buffer_size": 180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								180,
+								180
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"paintwindow.cpp",
+				"Src/paintWindow.cpp"
+			],
+			[
+				"pain",
+				"Include/paintWindow.h"
+			],
+			[
+				"",
+				"Src/paintWindow.cpp"
+			],
+			[
+				"paint",
+				"Src/paintWindow.cpp"
+			],
+			[
+				"paintwindow.h",
+				"Include/paintWindow.h"
+			],
+			[
+				"menu",
+				"menuBar.py"
+			],
+			[
+				"scree",
+				"screen.py"
+			],
+			[
+				"time",
+				"timebase.py"
+			],
+			[
+				"scre",
+				"screen.py"
+			],
+			[
+				"scr",
+				"screen.py"
+			],
+			[
+				"gen",
+				"generator.py"
+			],
+			[
+				"gene",
+				"generator.py"
+			],
+			[
+				"re",
+				"README.txt"
+			],
+			[
+				"men",
+				"menuBar.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 222.0,
+	"status_bar_visible": true
+}
