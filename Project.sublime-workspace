@@ -107,7 +107,7 @@
 			"file": "Src/paintWindow.cpp",
 			"settings":
 			{
-				"buffer_size": 5367,
+				"buffer_size": 5743,
 				"line_ending": "Unix"
 			}
 		},
@@ -123,7 +123,7 @@
 			"file": "Src/paintArea.cpp",
 			"settings":
 			{
-				"buffer_size": 1698,
+				"buffer_size": 1774,
 				"line_ending": "Unix"
 			}
 		},
@@ -131,7 +131,7 @@
 			"file": "Include/paintArea.h",
 			"settings":
 			{
-				"buffer_size": 625,
+				"buffer_size": 654,
 				"line_ending": "Unix"
 			}
 		},
@@ -184,6 +184,7 @@
 	},
 	"file_history":
 	[
+		"/home/math/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/home/math/Documents/CAI/DrawingApp/.gitignore",
 		"/home/math/Documents/CAI/DrawingApp/Makefile",
 		"/F/Qt/PaintWindow-Sujet/Makefile",
@@ -396,7 +397,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -432,25 +433,25 @@
 					"file": "Src/paintWindow.cpp",
 					"settings":
 					{
-						"buffer_size": 5367,
+						"buffer_size": 5743,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3216,
-								3216
+								5321,
+								5321
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1312.0,
+						"translation.y": 1892.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -467,8 +468,8 @@
 						"selection":
 						[
 							[
-								727,
-								727
+								940,
+								940
 							]
 						],
 						"settings":
@@ -488,15 +489,15 @@
 					"file": "Src/paintArea.cpp",
 					"settings":
 					{
-						"buffer_size": 1698,
+						"buffer_size": 1774,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1686,
-								1686
+								1731,
+								1731
 							]
 						],
 						"settings":
@@ -506,7 +507,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 255.0,
+						"translation.y": 408.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -516,15 +517,15 @@
 					"file": "Include/paintArea.h",
 					"settings":
 					{
-						"buffer_size": 625,
+						"buffer_size": 654,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								613,
-								613
+								42,
+								49
 							]
 						],
 						"settings":
@@ -610,6 +611,14 @@
 		"selected_items":
 		[
 			[
+				"painta",
+				"Include/paintArea.h"
+			],
+			[
+				"paint",
+				"Src/paintWindow.cpp"
+			],
+			[
 				"paintwindow.cpp",
 				"Src/paintWindow.cpp"
 			],
@@ -619,10 +628,6 @@
 			],
 			[
 				"",
-				"Src/paintWindow.cpp"
-			],
-			[
-				"paint",
 				"Src/paintWindow.cpp"
 			],
 			[

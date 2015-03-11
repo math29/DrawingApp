@@ -13,7 +13,7 @@ class PaintArea : public QWidget
   public:
     PaintArea(QWidget *parent = 0);
     QPixmap getBuffer();
-    void setBuffer(QPixmap);
+    void setBuffer(QString);
   public slots:
     void setCurrentTool(int);
   protected :

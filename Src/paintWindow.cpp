@@ -137,8 +137,8 @@ void PaintWindow::_newFile(void)  {
 
 void PaintWindow::_openFile(void) {
     QString fileName = QFileDialog::getOpenFileName (this, tr("Choose a File"), "./Saves", tr("Images (*.png *.xpm *.jpg)"));
-    _area->setBuffer(QPixmap(fileName));
-    _area->paintEvent(NULL);
+    _area->setBuffer(fileName);
+    // _area->paintEvent(NULL);
     qDebug() << "PaintWindow::_openFile(void)";
 }
 

@@ -66,7 +66,7 @@ QPixmap PaintArea::getBuffer() {
   return *_buffer;
 }
 
-void PaintArea::setBuffer(QPixmap buffer) {
-  _buffer = &buffer;
+void PaintArea::setBuffer(QString fileName) {
+  _buffer->load(fileName);
 }
 
