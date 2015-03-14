@@ -13,6 +13,8 @@
 
 # Qt-es
 
+*.sublime-workspace
+
 /.qmake.cache
 /.qmake.stash
 *.pro.user

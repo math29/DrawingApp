@@ -57,6 +57,12 @@ void PaintWindow::_createActions(void) {
   _saveAct->setStatusTip(tr("Saved a file"));
   _saveAct->setData(QVariant("_saveAct data"));
 
+  _saveAsAct = new QAction(QIcon(":/Images/save_as.png"), tr("&Save As..."), this);
+  _saveAsAct->setShortcut(tr("Ctrl+D"));
+  _saveAsAct->setToolTip(tr("Saving as Work Tooltip"));
+  _saveAsAct->setStatusTip(tr("Saved as a file"));
+  _saveAsAct->setData(QVariant("_saveAsAct data"));
+
   _exitAct = new QAction(tr("&Exit..."), this);
   _exitAct->setShortcut(tr("Ctrl+X"));
   _exitAct->setToolTip(tr("Exit"));
@@ -82,6 +88,7 @@ void PaintWindow::_connectActions(void) {
     _fileMenu->addAction(_newAct);
     _fileMenu->addAction(_openAct);
     _fileMenu->addAction(_saveAct);
+    _fileMenu->addAction(_saveAsAct);
     _fileMenu->addAction(_exitAct);
 
     _toolBar->addAction(_newAct);
@@ -109,6 +116,7 @@ void PaintWindow::_connectSignals(void) {
     connect(_newAct, SIGNAL(triggered()), this,SLOT(_newFile( )) );
     connect(_openAct, SIGNAL(triggered()), this,SLOT(_openFile( )) );
     connect(_saveAct, SIGNAL(triggered()), this,SLOT(_saveFile( )) );
+    connect(_saveAsAct, SIGNAL(triggered()), this,SLOT(_saveAsFile( )) );
     connect(_exitAct,SIGNAL(activated()), this, SLOT(quit()));
 
     connect(_freehandAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
@@ -132,20 +140,32 @@ void PaintWindow::_aboutQt(void) {
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_newFile(void)  {
+    _area->resetBuffer();
+    _fileName = "";
     qDebug() << "PaintWindow::_newFile(void)";
 }
 
 void PaintWindow::_openFile(void) {
-    QString fileName = QFileDialog::getOpenFileName (this, tr("Choose a File"), "./Saves", tr("Images (*.png *.xpm *.jpg)"));
-    _area->setBuffer(fileName);
+    _fileName = QFileDialog::getOpenFileName (this, tr("Choose a File"), "./Saves", tr("Images (*.png *.xpm *.jpg)"));
+    _area->setBuffer(_fileName);
     // _area->paintEvent(NULL);
     qDebug() << "PaintWindow::_openFile(void)";
 }
 
 void PaintWindow::_saveFile(void)  {
-    QString fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
-    if(fileName != NULL) _area->getBuffer().save(fileName, "PNG");
+    if(_fileName != NULL) {
+        _area->getBuffer().save(_fileName, "PNG");
+    }else {
+        _fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
+        _area->getBuffer().save(_fileName, "PNG");
+    }
     qDebug() << "PaintWindow::_saveFile(void)";
+}
+
+void PaintWindow::_saveAsFile(void)  {
+    _fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
+    _area->getBuffer().save(_fileName, "PNG");
+    qDebug() << "PaintWindow::_saveAsFile(void)";
 }
 
 void PaintWindow::quit(void)  {
