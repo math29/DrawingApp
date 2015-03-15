@@ -50,7 +50,7 @@ class PaintWindow : public QMainWindow
    // actions
    QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
    QActionGroup *_toolsQag;
-   QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct;
+   QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct;
    // mapping 
    QSignalMapper *_signalMapper;
    //Dialog Box

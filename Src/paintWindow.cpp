@@ -21,6 +21,7 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
   _signalMapper->setMapping(_lineAct, TOOLS_ID_LINE);
   _signalMapper->setMapping(_rectAct, TOOLS_ID_RECTANGLE);
   _signalMapper->setMapping(_polyAct, TOOLS_ID_POLYGON);
+  _signalMapper->setMapping(_circleAct, TOOLS_ID_CIRCLE);
 
   _connectSignals();
 }
@@ -77,10 +78,12 @@ void PaintWindow::_createActions(void) {
   _lineAct = new QAction(tr("&Line"), this);
   _rectAct = new QAction(tr("&Rectangle"), this);
   _polyAct = new QAction(tr("&Polygon"), this);
+  _circleAct = new QAction(tr("&Circle"), this);
   _freehandAct->setCheckable(true);
   _lineAct->setCheckable(true);
   _rectAct->setCheckable(true);
   _polyAct->setCheckable(true);
+  _circleAct->setCheckable(true);
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_connectActions(void) {
@@ -99,11 +102,13 @@ void PaintWindow::_connectActions(void) {
     _toolsQag->addAction(_lineAct);
     _toolsQag->addAction(_rectAct);
     _toolsQag->addAction(_polyAct);
+    _toolsQag->addAction(_circleAct);
 
     _toolMenu->addAction(_freehandAct);
     _toolMenu->addAction(_lineAct);
     _toolMenu->addAction(_rectAct);
     _toolMenu->addAction(_polyAct);
+    _toolMenu->addAction(_circleAct);
 
     _helpMenu->addAction(_aboutAct);
 }
@@ -121,6 +126,7 @@ void PaintWindow::_connectSignals(void) {
     connect(_lineAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
     connect(_rectAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
     connect(_polyAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
+    connect(_circleAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
 
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
