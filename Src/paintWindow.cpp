@@ -192,5 +192,18 @@ void PaintWindow::_saveAsFile(void)  {
 }
 
 void PaintWindow::quit(void)  {
-  exit(0);
+  msgBox.setText("Etes vous sur de vouloir quitter ?");
+  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+  msgBox.setDefaultButton(QMessageBox::No);
+  int ret = msgBox.exec();
+
+  switch (ret) {
+    case QMessageBox::Yes:
+        exit(0);
+        break;
+    case QMessageBox::No:
+        break;
+    default:
+        break;
+  }
 }
