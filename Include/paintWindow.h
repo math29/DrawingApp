@@ -16,6 +16,7 @@
 
 #include <QDebug>
 #include <QDate>
+#include <QMessageBox>
 
 #include "paintArea.h"
 
@@ -53,6 +54,8 @@ class PaintWindow : public QMainWindow
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct;
    // mapping 
    QSignalMapper *_signalMapper;
+   //Dialog Box
+   QMessageBox msgBox;
    //FileName
    QString _fileName;
 };

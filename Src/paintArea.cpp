@@ -72,8 +72,8 @@ void PaintArea::setBuffer(QString fileName) {
 
 void PaintArea::resetBuffer() {
   QSize size = _buffer->size();
+  _startPoint = _endPoint = QPoint(0,0);
   _buffer = new QPixmap(size);
   _buffer->fill(Qt::white);
-  update();
   qDebug() << "On reset le buffer";
 }

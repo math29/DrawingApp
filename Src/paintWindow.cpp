@@ -140,15 +140,38 @@ void PaintWindow::_aboutQt(void) {
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_newFile(void)  {
-    _area->resetBuffer();
-    _fileName = "";
+  msgBox.setText("Si vous continuez vous allez perdre toutes les modifications non sauvegardees.");
+  msgBox.setInformativeText("Voulez vous sauvegarder?");
+  msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+  msgBox.setDefaultButton(QMessageBox::Save);
+  int ret = msgBox.exec();
+
+  switch (ret) {
+    case QMessageBox::Save:
+        // Save was clicked
+        _area->update();
+        _saveFile();
+        _area->update();
+        qDebug() << "Switch : NewFile : On a fini la sauvegarde !";
+    case QMessageBox::Discard:
+        // Don't Save was clicked
+        _area->resetBuffer();
+        _fileName = "";
+        qDebug() << "Switch : NewFile : On a fini le reset extc ... !";
+        break;
+    case QMessageBox::Cancel:
+        // Cancel was clicked
+        break;
+    default:
+        // should never be reached
+        break;
+  }
     qDebug() << "PaintWindow::_newFile(void)";
 }
 
 void PaintWindow::_openFile(void) {
     _fileName = QFileDialog::getOpenFileName (this, tr("Choose a File"), "./Saves", tr("Images (*.png *.xpm *.jpg)"));
     _area->setBuffer(_fileName);
-    // _area->paintEvent(NULL);
     qDebug() << "PaintWindow::_openFile(void)";
 }
 
