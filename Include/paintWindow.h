@@ -35,7 +35,6 @@ class PaintWindow : public QMainWindow
     void _saveFile(void);
     void _saveAsFile(void);
     void _about(void);
-    void _aboutQt(void);
   private :
    void _createMenus(void);
    void _createToolBars(void);
@@ -49,7 +48,7 @@ class PaintWindow : public QMainWindow
    QToolBar *_toolBar;
    QMenu *_fileMenu, *_toolMenu, *_helpMenu ;
    // actions
-   QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct, *_aboutQtAct;
+   QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
    QActionGroup *_toolsQag;
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct;
    // mapping 

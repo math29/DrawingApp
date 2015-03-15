@@ -71,7 +71,6 @@ void PaintWindow::_createActions(void) {
   _exitAct->setData(QVariant("_quitAct data"));
 
   _aboutAct    = new QAction(tr("&About Us.."), this);
-  _aboutQtAct    = new QAction(tr("&About Qt.."), this);
 
   _toolsQag = new QActionGroup( this );
   _freehandAct = new QAction(tr("&Freehand"),  this);
@@ -107,7 +106,6 @@ void PaintWindow::_connectActions(void) {
     _toolMenu->addAction(_polyAct);
 
     _helpMenu->addAction(_aboutAct);
-    _helpMenu->addAction(_aboutQtAct);
 }
 
 //--------------------------------------------------------------------------------
@@ -125,18 +123,13 @@ void PaintWindow::_connectSignals(void) {
     connect(_polyAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
 
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
-    connect(_aboutQtAct,SIGNAL(triggered()),this, SLOT(_aboutQt()));
 
     connect(_signalMapper,SIGNAL(mapped(int)), this, SIGNAL(toolMapped(int)));
     connect(this, SIGNAL(toolMapped(int)), _area, SLOT(setCurrentTool(int)) );
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_about(void) {
-    QMessageBox::information( this,"About Us","Dupond - Dupont","Au boulot !");
-}
-
-void PaintWindow::_aboutQt(void) {
-    QMessageBox::aboutQt(this);
+    QMessageBox::information( this,"About Us","Developpeur : Mathieu ALLAIN \n Email : maaath29@gmail.com","Au boulot !");
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_newFile(void)  {
