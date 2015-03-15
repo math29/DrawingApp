@@ -56,6 +56,10 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       if (_release) paintBuffer.drawRect(QRect(_startPoint,_endPoint));
       paintWindow.drawRect(QRect(_startPoint,_endPoint));
       break;
+    case TOOLS_ID_CIRCLE :
+      if (_release) paintBuffer.drawEllipse(QRect(_startPoint,_endPoint));
+      paintWindow.drawEllipse(QRect(_startPoint,_endPoint));
+      break;
     case TOOLS_ID_POLYGON :
       if(_releaseDoubleClic) {
         while(_points.size() > 0){
