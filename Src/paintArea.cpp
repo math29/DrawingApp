@@ -11,8 +11,9 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
   qDebug() << "PaintArea::mousePressEvent(void)";
-  _release=false;
-  _startPoint = _endPoint = evt->pos(); 
+  _release = false;
+  _releaseDoubleClic = false;
+  _startPoint = _endPoint = evt->pos();
 }
 
 void PaintArea::mouseMoveEvent(QMouseEvent* evt) 
@@ -31,12 +32,14 @@ void PaintArea::mouseReleaseEvent(QMouseEvent* evt)
 
 void PaintArea::mouseDoubleClickEvent (QMouseEvent* evt) {
   qDebug() << "PaintArea::mouseDoubleClickEvent(void)";
+  _releaseDoubleClic = true;
+  update();
 }
 
 void PaintArea::paintEvent(QPaintEvent* evt) 
 {
   qDebug() << "PaintArea::paintEvent(void)";
-  qDebug() << _currentTool;
+  //qDebug() << _currentTool;
   QPainter paintWindow(this);
   QPainter paintBuffer(_buffer);
   paintWindow.drawPixmap(0,0, *_buffer);
@@ -52,6 +55,18 @@ void PaintArea::paintEvent(QPaintEvent* evt)
     case TOOLS_ID_RECTANGLE :
       if (_release) paintBuffer.drawRect(QRect(_startPoint,_endPoint));
       paintWindow.drawRect(QRect(_startPoint,_endPoint));
+      break;
+    case TOOLS_ID_POLYGON :
+      if(_releaseDoubleClic) {
+        while(_points.size() > 0){
+          _points.pop_back();
+        }
+        break;
+      }
+      if(_points.size() < 1) _points.push_back(_startPoint);
+      _points.push_back(_endPoint);
+      if (_release) paintBuffer.drawLine(_points[_points.size()-2], _points[_points.size()-1]);
+      paintWindow.drawLine(_points[_points.size()-2], _endPoint);
       break;
     default :
       break;

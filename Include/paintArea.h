@@ -5,10 +5,13 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QDebug>
+#include <iostream>
+#include <vector>
+using namespace std;
 
 class PaintArea : public QWidget
 {
-  Q_OBJECT  
+  Q_OBJECT
 
   public:
     PaintArea(QWidget *parent = 0);
@@ -24,10 +27,11 @@ class PaintArea : public QWidget
     void mouseDoubleClickEvent(QMouseEvent* evt);
     void paintEvent(QPaintEvent*);
   private :
-   QPoint  _startPoint,_endPoint;
+   QPoint  _startPoint,_endPoint, _beginPoint;
+   vector<QPoint> _points;
    QPixmap *_buffer;
    int _currentTool;
-   bool _release;
+   bool _release, _releaseDoubleClic;
 };
 #endif
 
