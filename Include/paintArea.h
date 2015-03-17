@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QMouseEvent>
+#include <QKeyEvent>
 #include <QPainter>
 #include <QDebug>
 #include <iostream>
@@ -24,14 +25,18 @@ class PaintArea : public QWidget
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);
     void mouseReleaseEvent(QMouseEvent*);
-    void mouseDoubleClickEvent(QMouseEvent* evt);
+    void mouseDoubleClickEvent(QMouseEvent*);
+    void keyPressEvent(QKeyEvent*);
+    void keyReleaseEvent(QKeyEvent*);
     void paintEvent(QPaintEvent*);
   private :
    QPoint  _startPoint,_endPoint, _beginPoint;
-   vector<QPoint> _points;
+   //vector<QPoint> _points;
+   QPolygon polygon;
+   
    QPixmap *_buffer;
    int _currentTool;
-   bool _release, _releaseDoubleClic;
+   bool _release, _releaseDoubleClic, _enter, _esc;
 };
 #endif
 

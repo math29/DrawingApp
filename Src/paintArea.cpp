@@ -36,6 +36,18 @@ void PaintArea::mouseDoubleClickEvent (QMouseEvent* evt) {
   update();
 }
 
+void PaintArea::keyPressEvent(QKeyEvent* evt) {
+    qDebug() << "PaintArea::keyPressEvent(void)";
+    if (evt->key() == Qt::Key_Enter) _enter = true;
+    else if (evt->key() == Qt::Key_Escape) _esc = true;
+}
+
+void PaintArea::keyReleaseEvent(QKeyEvent* evt) {
+    qDebug() << "PaintArea::keyReleaseEvent(void)";
+    if (evt->key() == Qt::Key_Enter) _enter = false;
+    else if (evt->key() == Qt::Key_Escape) _esc = false;
+}
+
 void PaintArea::paintEvent(QPaintEvent* evt) 
 {
   qDebug() << "PaintArea::paintEvent(void)";
@@ -61,16 +73,22 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       paintWindow.drawEllipse(QRect(_startPoint,_endPoint));
       break;
     case TOOLS_ID_POLYGON :
-      if(_releaseDoubleClic) {
-        while(_points.size() > 0){
-          _points.pop_back();
+//       if(_releaseDoubleClic) {
+//         while(_points.size() > 0){
+//           _points.pop_back();
+//         }
+//         break;
+//       }
+//       if(_points.size() < 1) _points.push_back(_startPoint);
+//       _points.push_back(_endPoint);
+//       if (_release) paintBuffer.drawLine(_points[_points.size()-2], _points[_points.size()-1]);
+//       paintWindow.drawLine(_points[_points.size()-2], _endPoint);
+        if (_enter) {
+            paintWindow.drawPolygon(polygon);
+        } else if (_release) {
+            polygon << _startPoint;
+            paintBuffer.drawPolyline(polygon);
         }
-        break;
-      }
-      if(_points.size() < 1) _points.push_back(_startPoint);
-      _points.push_back(_endPoint);
-      if (_release) paintBuffer.drawLine(_points[_points.size()-2], _points[_points.size()-1]);
-      paintWindow.drawLine(_points[_points.size()-2], _endPoint);
       break;
     default :
       break;
@@ -95,4 +113,5 @@ void PaintArea::resetBuffer() {
   _buffer = new QPixmap(size);
   _buffer->fill(Qt::white);
   qDebug() << "On reset le buffer";
+  update();
 }

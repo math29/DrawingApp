@@ -11,8 +11,9 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
   qDebug() << "PaintArea::mousePressEvent(void)";
-  _release=false;
-  _startPoint = _endPoint = evt->pos(); 
+  _release = false;
+  _releaseDoubleClic = false;
+  _startPoint = _endPoint = evt->pos();
 }
 
 void PaintArea::mouseMoveEvent(QMouseEvent* evt) 
@@ -31,12 +32,19 @@ void PaintArea::mouseReleaseEvent(QMouseEvent* evt)
 
 void PaintArea::mouseDoubleClickEvent (QMouseEvent* evt) {
   qDebug() << "PaintArea::mouseDoubleClickEvent(void)";
+  _releaseDoubleClic = true;
+  update();
+}
+
+void PaintArea::keyPressEvent(QKeyEvent* evt) {
+    if (evt->key() == Qt::Key_Enter) _enter = true;
+    else if (evt->key() == Qt::Key_Escape) _esc = true;
 }
 
 void PaintArea::paintEvent(QPaintEvent* evt) 
 {
   qDebug() << "PaintArea::paintEvent(void)";
-  qDebug() << _currentTool;
+  //qDebug() << _currentTool;
   QPainter paintWindow(this);
   QPainter paintBuffer(_buffer);
   paintWindow.drawPixmap(0,0, *_buffer);
@@ -53,6 +61,28 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       if (_release) paintBuffer.drawRect(QRect(_startPoint,_endPoint));
       paintWindow.drawRect(QRect(_startPoint,_endPoint));
       break;
+    case TOOLS_ID_CIRCLE :
+      if (_release) paintBuffer.drawEllipse(QRect(_startPoint,_endPoint));
+      paintWindow.drawEllipse(QRect(_startPoint,_endPoint));
+      break;
+    case TOOLS_ID_POLYGON :
+//       if(_releaseDoubleClic) {
+//         while(_points.size() > 0){
+//           _points.pop_back();
+//         }
+//         break;
+//       }
+//       if(_points.size() < 1) _points.push_back(_startPoint);
+//       _points.push_back(_endPoint);
+//       if (_release) paintBuffer.drawLine(_points[_points.size()-2], _points[_points.size()-1]);
+//       paintWindow.drawLine(_points[_points.size()-2], _endPoint);
+        if (_enter) {
+            paintWindow.drawPolygon(polygon);
+        } else if (_release) {
+            polygon << _startPoint;
+            paintBuffer.drawPolyline(polygon);
+        }
+      break;
     default :
       break;
   }
@@ -62,3 +92,19 @@ void PaintArea::setCurrentTool(int tool) {
   _currentTool = tool;
 }
 
+QPixmap PaintArea::getBuffer() {
+  return *_buffer;
+}
+
+void PaintArea::setBuffer(QString fileName) {
+  _buffer->load(fileName);
+}
+
+void PaintArea::resetBuffer() {
+  QSize size = _buffer->size();
+  _startPoint = _endPoint = QPoint(0,0);
+  _buffer = new QPixmap(size);
+  _buffer->fill(Qt::white);
+  qDebug() << "On reset le buffer";
+  update();
+}
