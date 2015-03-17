@@ -23,6 +23,13 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
   _signalMapper->setMapping(_polyAct, TOOLS_ID_POLYGON);
   _signalMapper->setMapping(_circleAct, TOOLS_ID_CIRCLE);
 
+  _signalMapperColor = new QSignalMapper(this);
+  _signalMapperColor->setMapping(_blue, COLOR_BLUE);
+  _signalMapperColor->setMapping(_black, COLOR_BLACK);
+  _signalMapperColor->setMapping(_yellow, COLOR_YELLOW);
+  _signalMapperColor->setMapping(_green, COLOR_GREEN);
+  _signalMapperColor->setMapping(_red, COLOR_RED);
+
   _connectSignals();
 }
 //--------------------------------------------------------------------------------
@@ -33,6 +40,8 @@ void PaintWindow::_createMenus(void) {
  _toolMenu = menubar->addMenu("&tool");
  _styleMenu = menubar->addMenu("&Style");
  _helpMenu = menubar->addMenu( tr("&Help") );
+
+ _colorSubMenu = _styleMenu->addMenu("&Color");
 
 }
 //--------------------------------------------------------------------------------
@@ -86,6 +95,19 @@ void PaintWindow::_createActions(void) {
   _rectAct->setCheckable(true);
   _polyAct->setCheckable(true);
   _circleAct->setCheckable(true);
+
+  _toolsColor = new QActionGroup( this );
+  _blue = new QAction(tr("&Bleu"),  this);
+  _black = new QAction(tr("&Noir"), this);
+  _yellow = new QAction(tr("&Jaune"), this);
+  _red = new QAction(tr("&Rouge"), this);
+  _green = new QAction(tr("&Vert"), this);
+  _blue->setCheckable(true);
+  _black->setCheckable(true);
+  _yellow->setCheckable(true);
+  _red->setCheckable(true);
+  _green->setCheckable(true);
+
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_connectActions(void) {
@@ -112,6 +134,19 @@ void PaintWindow::_connectActions(void) {
     _toolMenu->addAction(_polyAct);
     _toolMenu->addAction(_circleAct);
 
+    
+    _colorSubMenu->addAction(_blue);
+    _colorSubMenu->addAction(_black);
+    _colorSubMenu->addAction(_yellow);
+    _colorSubMenu->addAction(_red);
+    _colorSubMenu->addAction(_green);
+
+    _toolsColor->addAction(_blue);
+    _toolsColor->addAction(_black);
+    _toolsColor->addAction(_yellow);
+    _toolsColor->addAction(_red);
+    _toolsColor->addAction(_green);
+
     _helpMenu->addAction(_aboutAct);
 }
 
@@ -130,10 +165,19 @@ void PaintWindow::_connectSignals(void) {
     connect(_polyAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
     connect(_circleAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
 
+    connect(_blue,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
+    connect(_red,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
+    connect(_yellow,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
+    connect(_green,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
+    connect(_black,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
+
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
     connect(_signalMapper,SIGNAL(mapped(int)), this, SIGNAL(toolMapped(int)));
     connect(this, SIGNAL(toolMapped(int)), _area, SLOT(setCurrentTool(int)) );
+
+    connect(_signalMapperColor,SIGNAL(mapped(int)), this, SIGNAL(toolMappedColor(int)));
+    connect(this, SIGNAL(toolMappedColor(int)), _area, SLOT(changeColor(int)) );
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_about(void) {

@@ -43,6 +43,35 @@ void PaintArea::paintEvent(QPaintEvent* evt)
   QPainter paintWindow(this);
   QPainter paintBuffer(_buffer);
   paintWindow.drawPixmap(0,0, *_buffer);
+  qDebug() << _currentColor;
+  switch(_currentColor) {
+    case COLOR_BLUE :
+      paintWindow.setPen(QColor("blue"));
+      paintBuffer.setPen(QColor("blue"));
+      qDebug() << "on met la couleur bleu"+_currentColor;
+      break;
+    case COLOR_BLACK :
+      paintWindow.setPen(QColor("black"));
+      paintBuffer.setPen(QColor("black"));
+      qDebug() << "on met la couleur noir";
+      break;
+    case COLOR_RED :
+      paintWindow.setPen(QColor("red"));
+      paintBuffer.setPen(QColor("red"));
+      qDebug() << "on met la couleur red";
+      break;
+    case COLOR_YELLOW :
+      paintWindow.setPen(QColor("yellow"));
+      paintBuffer.setPen(QColor("yellow"));
+      qDebug() << "on met la couleur jaune";
+      break;
+    case COLOR_GREEN :
+      paintWindow.setPen(QColor("green"));
+      paintBuffer.setPen(QColor("green"));
+      qDebug() << "on met la couleur verte";
+      break;
+  }
+
   switch(_currentTool) {
     case TOOLS_ID_FREEHAND :
       paintBuffer.drawPoint(_endPoint);
@@ -95,4 +124,8 @@ void PaintArea::resetBuffer() {
   _buffer = new QPixmap(size);
   _buffer->fill(Qt::white);
   qDebug() << "On reset le buffer";
+}
+
+void PaintArea::changeColor(int color) {
+  _currentColor = color;
 }

@@ -20,6 +20,7 @@ class PaintArea : public QWidget
     void resetBuffer();
   public slots:
     void setCurrentTool(int);
+    void changeColor(int);
   protected :
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);
@@ -30,7 +31,7 @@ class PaintArea : public QWidget
    QPoint  _startPoint,_endPoint, _beginPoint;
    vector<QPoint> _points;
    QPixmap *_buffer;
-   int _currentTool;
+   int _currentTool, _currentColor;
    bool _release, _releaseDoubleClic;
 };
 #endif

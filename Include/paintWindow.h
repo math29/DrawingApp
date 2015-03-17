@@ -27,6 +27,7 @@ class PaintWindow : public QMainWindow
     PaintWindow(QWidget *parent = 0);
   signals:
    void toolMapped(int digit);
+   void toolMappedColor(int digit);
   public slots :
     void quit(void);
   private slots :
@@ -46,14 +47,14 @@ class PaintWindow : public QMainWindow
    PaintArea *_area;
    // menus
    QToolBar *_toolBar;
-   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu ;
+   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu ;
    // actions
    QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
-   QActionGroup *_toolsQag;
+   QActionGroup *_toolsQag, *_toolsColor;
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct;
    QAction *_green, *_red, *_yellow, *_black, *_blue;
    // mapping 
-   QSignalMapper *_signalMapper;
+   QSignalMapper *_signalMapper, *_signalMapperColor;
    //Dialog Box
    QMessageBox msgBox;
    //FileName

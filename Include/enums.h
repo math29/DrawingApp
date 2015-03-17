@@ -10,6 +10,14 @@ enum toolsID {
 	TOOLS_ID_TEXT, 
 };
 
+enum colorsID {
+	COLOR_BLUE, 
+	COLOR_BLACK, 
+	COLOR_RED,
+	COLOR_GREEN, 
+	COLOR_YELLOW,
+};
+
 enum menusID{
 	FILE_MENU_ID_NEW,
 	FILE_MENU_ID_OPEN, 
