@@ -31,7 +31,9 @@ void PaintWindow::_createMenus(void) {
  statusBar()->showMessage("Ready");
  _fileMenu = menubar->addMenu( tr("&File") );
  _toolMenu = menubar->addMenu("&tool");
+ _styleMenu = menubar->addMenu("&Style");
  _helpMenu = menubar->addMenu( tr("&Help") );
+
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_createToolBars(void) {

@@ -46,11 +46,12 @@ class PaintWindow : public QMainWindow
    PaintArea *_area;
    // menus
    QToolBar *_toolBar;
-   QMenu *_fileMenu, *_toolMenu, *_helpMenu ;
+   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu ;
    // actions
    QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
    QActionGroup *_toolsQag;
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct;
+   QAction *_green, *_red, *_yellow, *_black, *_blue;
    // mapping 
    QSignalMapper *_signalMapper;
    //Dialog Box
