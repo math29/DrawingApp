@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include <QColor>
+#include <QColorDialog>
 
 using namespace std;
 

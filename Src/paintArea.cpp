@@ -72,7 +72,7 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       paintBuffer.setPen(_currentQColor);
       break;
   }
-
+  qDebug() << "entre deux";
   switch(_currentTool) {
     case TOOLS_ID_FREEHAND :
       paintBuffer.drawPoint(_endPoint);
@@ -129,6 +129,10 @@ void PaintArea::resetBuffer() {
 
 void PaintArea::changeColor(int color) {
   _currentColor = color;
+  if(color == COLOR_OTHER) {
+    qDebug() << "ici on lance la coloration";
+    changeColoration(QColorDialog::getColor(Qt::white, this));
+  }
 }
 
 void PaintArea::changeColoration(QColor color) {

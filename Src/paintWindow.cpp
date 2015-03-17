@@ -189,7 +189,6 @@ void PaintWindow::_connectSignals(void) {
     connect(_green,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
     connect(_black,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
     connect(_otherColor,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
-    connect(_otherColor, SIGNAL(triggered()), this, SLOT(_chooseColor()) );
 
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
@@ -277,8 +276,4 @@ void PaintWindow::quit(void)  {
 
 void PaintWindow::showPopUp(QPoint value) {
   _popUpMenu->exec(value, 0);
-}
-
-void PaintWindow::_chooseColor() {
-    _area->changeColoration(QColorDialog::getColor(Qt::white, this));
 }

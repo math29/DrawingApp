@@ -17,7 +17,6 @@
 #include <QDebug>
 #include <QDate>
 #include <QMessageBox>
-#include <QColorDialog>
 
 #include "paintArea.h"
 
@@ -38,7 +37,6 @@ class PaintWindow : public QMainWindow
     void _saveFile(void);
     void _saveAsFile(void);
     void _about(void);
-    void _chooseColor(void);
   private :
    void _createMenus(void);
    void _createToolBars(void);
