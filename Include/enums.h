@@ -16,6 +16,7 @@ enum colorsID {
 	COLOR_RED,
 	COLOR_GREEN, 
 	COLOR_YELLOW,
+	COLOR_OTHER,
 };
 
 enum menusID{

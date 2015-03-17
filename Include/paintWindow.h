@@ -17,6 +17,7 @@
 #include <QDebug>
 #include <QDate>
 #include <QMessageBox>
+#include <QColorDialog>
 
 #include "paintArea.h"
 
@@ -37,6 +38,7 @@ class PaintWindow : public QMainWindow
     void _saveFile(void);
     void _saveAsFile(void);
     void _about(void);
+    void _chooseColor(void);
   private :
    void _createMenus(void);
    void _createToolBars(void);
@@ -48,12 +50,12 @@ class PaintWindow : public QMainWindow
    PaintArea *_area;
    // menus
    QToolBar *_toolBar;
-   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu;
+   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu, *_penMenu;
    // actions
    QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
    QActionGroup *_toolsQag, *_toolsColor;
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct, *_textAct;
-   QAction *_green, *_red, *_yellow, *_black, *_blue;
+   QAction *_otherColor, *_green, *_red, *_yellow, *_black, *_blue;
    // mapping 
    QSignalMapper *_signalMapper, *_signalMapperColor;
    //Dialog Box

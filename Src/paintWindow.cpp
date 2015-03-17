@@ -30,6 +30,7 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
   _signalMapperColor->setMapping(_yellow, COLOR_YELLOW);
   _signalMapperColor->setMapping(_green, COLOR_GREEN);
   _signalMapperColor->setMapping(_red, COLOR_RED);
+  _signalMapperColor->setMapping(_otherColor, COLOR_OTHER);
 
   _connectSignals();
 }
@@ -42,7 +43,9 @@ void PaintWindow::_createMenus(void) {
  _styleMenu = menubar->addMenu("&Style");
  _helpMenu = menubar->addMenu( tr("&Help") );
 
- _colorSubMenu = _toolMenu->addMenu("&Color");
+ _penMenu = _styleMenu->addMenu("&Pen");
+
+ _colorSubMenu = _penMenu->addMenu("&Color");
 
 }
 //--------------------------------------------------------------------------------
@@ -105,11 +108,13 @@ void PaintWindow::_createActions(void) {
   _yellow = new QAction(tr("&Jaune"), this);
   _red = new QAction(tr("&Rouge"), this);
   _green = new QAction(tr("&Vert"), this);
+  _otherColor = new QAction(tr("&Personnalisé"), this);
   _blue->setCheckable(true);
   _black->setCheckable(true);
   _yellow->setCheckable(true);
   _red->setCheckable(true);
   _green->setCheckable(true);
+  _otherColor->setCheckable(true);
 
   _popUpMenu = new QMenu();
   _popUpMenu->addMenu(_toolMenu);
@@ -150,12 +155,14 @@ void PaintWindow::_connectActions(void) {
     _colorSubMenu->addAction(_yellow);
     _colorSubMenu->addAction(_red);
     _colorSubMenu->addAction(_green);
+    _colorSubMenu->addAction(_otherColor);
 
     _toolsColor->addAction(_blue);
     _toolsColor->addAction(_black);
     _toolsColor->addAction(_yellow);
     _toolsColor->addAction(_red);
     _toolsColor->addAction(_green);
+    _toolsColor->addAction(_otherColor);
 
     _helpMenu->addAction(_aboutAct);
 }
@@ -181,6 +188,8 @@ void PaintWindow::_connectSignals(void) {
     connect(_yellow,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
     connect(_green,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
     connect(_black,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
+    connect(_otherColor,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
+    connect(_otherColor, SIGNAL(triggered()), this, SLOT(_chooseColor()) );
 
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
@@ -268,4 +277,8 @@ void PaintWindow::quit(void)  {
 
 void PaintWindow::showPopUp(QPoint value) {
   _popUpMenu->exec(value, 0);
+}
+
+void PaintWindow::_chooseColor() {
+    _area->changeColoration(QColorDialog::getColor(Qt::white, this));
 }

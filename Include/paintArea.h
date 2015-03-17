@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <iostream>
 #include <vector>
+#include <QColor>
+
 using namespace std;
 
 class PaintArea : public QWidget
@@ -21,6 +23,7 @@ class PaintArea : public QWidget
   public slots:
     void setCurrentTool(int);
     void changeColor(int);
+    void changeColoration(QColor);
   signals:
     void popUpAsked(QPoint value);
   protected :
@@ -32,6 +35,7 @@ class PaintArea : public QWidget
     void contextMenuEvent(QContextMenuEvent *evt);
   private :
    QPoint  _startPoint,_endPoint, _beginPoint;
+   QColor _currentQColor;
    vector<QPoint> _points;
    QPixmap *_buffer;
    int _currentTool, _currentColor;
