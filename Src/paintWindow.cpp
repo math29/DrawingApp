@@ -22,6 +22,7 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
   _signalMapper->setMapping(_rectAct, TOOLS_ID_RECTANGLE);
   _signalMapper->setMapping(_polyAct, TOOLS_ID_POLYGON);
   _signalMapper->setMapping(_circleAct, TOOLS_ID_CIRCLE);
+  _signalMapper->setMapping(_textAct, TOOLS_ID_TEXT);
 
   _signalMapperColor = new QSignalMapper(this);
   _signalMapperColor->setMapping(_blue, COLOR_BLUE);
@@ -90,11 +91,13 @@ void PaintWindow::_createActions(void) {
   _rectAct = new QAction(tr("&Rectangle"), this);
   _polyAct = new QAction(tr("&Polygon"), this);
   _circleAct = new QAction(tr("&Circle"), this);
+  _textAct = new QAction(tr("&Text"), this);
   _freehandAct->setCheckable(true);
   _lineAct->setCheckable(true);
   _rectAct->setCheckable(true);
   _polyAct->setCheckable(true);
   _circleAct->setCheckable(true);
+  _textAct->setCheckable(true);
 
   _toolsColor = new QActionGroup( this );
   _blue = new QAction(tr("&Bleu"),  this);
@@ -115,9 +118,11 @@ void PaintWindow::_createActions(void) {
 //--------------------------------------------------------------------------------
 void PaintWindow::_connectActions(void) {
     _fileMenu->addAction(_newAct);
+    _fileMenu->addSeparator();
     _fileMenu->addAction(_openAct);
     _fileMenu->addAction(_saveAct);
     _fileMenu->addAction(_saveAsAct);
+    _fileMenu->addSeparator();
     _fileMenu->addAction(_exitAct);
 
     _toolBar->addAction(_newAct);
@@ -130,6 +135,7 @@ void PaintWindow::_connectActions(void) {
     _toolsQag->addAction(_rectAct);
     _toolsQag->addAction(_polyAct);
     _toolsQag->addAction(_circleAct);
+    _toolsQag->addAction(_textAct);
 
     _toolMenu->addAction(_freehandAct);
     _toolMenu->addAction(_lineAct);
@@ -137,7 +143,7 @@ void PaintWindow::_connectActions(void) {
     _toolMenu->addAction(_polyAct);
     _toolMenu->addAction(_circleAct);
     _toolMenu->addSeparator();
-    // _toolMenu->addAction(_textAct);
+    _toolMenu->addAction(_textAct);
     
     _colorSubMenu->addAction(_blue);
     _colorSubMenu->addAction(_black);
@@ -168,6 +174,7 @@ void PaintWindow::_connectSignals(void) {
     connect(_rectAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
     connect(_polyAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
     connect(_circleAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
+    connect(_textAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
 
     connect(_blue,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
     connect(_red,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
