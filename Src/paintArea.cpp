@@ -8,6 +8,9 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   _buffer = new QPixmap(parent->size());
   _buffer->fill(Qt::white);
   _release=false;
+  _releaseDoubleClic = false;
+  _enter = false;
+  _esc = false;
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
@@ -76,18 +79,18 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       paintWindow.drawEllipse(QRect(_startPoint,_endPoint));
       break;
     case TOOLS_ID_POLYGON :
-//         if (_release) {
-//             paintBuffer.drawLine(_startPoint,_endPoint);
-//             polygon << _endPoint;
-//             paintBuffer.drawPolyline(polygon);
-//         } else if (_enter) {
-//             paintWindow.drawPolygon(polygon);
-//             polygon.clear();
-//         }
-         if (_release) {
+        if (polygon.size() == 0) polygon << _startPoint;
+        polygon.setPoint(polygon.size()-1, _endPoint);
+        if (_release) {
             polygon << _endPoint;
+            paintBuffer.drawPolyline(polygon);
+        }
+        paintWindow.drawPolyline(polygon);
+        if (_releaseDoubleClic) {
+            paintBuffer.drawPolygon(polygon);
             paintWindow.drawPolygon(polygon);
-         }
+            polygon.clear();
+        }
       break;
     default :
       break;
