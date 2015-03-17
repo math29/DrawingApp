@@ -108,6 +108,9 @@ void PaintWindow::_createActions(void) {
   _red->setCheckable(true);
   _green->setCheckable(true);
 
+  _popUpMenu = new QMenu();
+  _popUpMenu->addMenu(_toolMenu);
+
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_connectActions(void) {
@@ -133,7 +136,8 @@ void PaintWindow::_connectActions(void) {
     _toolMenu->addAction(_rectAct);
     _toolMenu->addAction(_polyAct);
     _toolMenu->addAction(_circleAct);
-
+    _toolMenu->addSeparator();
+    // _toolMenu->addAction(_textAct);
     
     _colorSubMenu->addAction(_blue);
     _colorSubMenu->addAction(_black);
@@ -178,6 +182,8 @@ void PaintWindow::_connectSignals(void) {
 
     connect(_signalMapperColor,SIGNAL(mapped(int)), this, SIGNAL(toolMappedColor(int)));
     connect(this, SIGNAL(toolMappedColor(int)), _area, SLOT(changeColor(int)) );
+
+    connect(_area, SIGNAL(popUpAsked(QPoint)), this, SLOT (showPopUp(QPoint)));
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_about(void) {
@@ -251,4 +257,8 @@ void PaintWindow::quit(void)  {
     default:
         break;
   }
+}
+
+void PaintWindow::showPopUp(QPoint value) {
+  _popUpMenu->exec(value, 0);
 }

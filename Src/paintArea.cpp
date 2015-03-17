@@ -36,6 +36,10 @@ void PaintArea::mouseDoubleClickEvent (QMouseEvent* evt) {
   update();
 }
 
+void PaintArea::contextMenuEvent(QContextMenuEvent *evt) {
+  emit popUpAsked(evt->globalPos());
+}
+
 void PaintArea::paintEvent(QPaintEvent* evt) 
 {
   qDebug() << "PaintArea::paintEvent(void)";

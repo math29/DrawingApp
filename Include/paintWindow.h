@@ -30,6 +30,7 @@ class PaintWindow : public QMainWindow
    void toolMappedColor(int digit);
   public slots :
     void quit(void);
+    void showPopUp(QPoint value);
   private slots :
     void _newFile(void);
     void _openFile(void);
@@ -47,11 +48,11 @@ class PaintWindow : public QMainWindow
    PaintArea *_area;
    // menus
    QToolBar *_toolBar;
-   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu ;
+   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu;
    // actions
    QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
    QActionGroup *_toolsQag, *_toolsColor;
-   QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct;
+   QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct, *_textAct;
    QAction *_green, *_red, *_yellow, *_black, *_blue;
    // mapping 
    QSignalMapper *_signalMapper, *_signalMapperColor;

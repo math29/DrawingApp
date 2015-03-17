@@ -21,12 +21,15 @@ class PaintArea : public QWidget
   public slots:
     void setCurrentTool(int);
     void changeColor(int);
+  signals:
+    void popUpAsked(QPoint value);
   protected :
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);
     void mouseReleaseEvent(QMouseEvent*);
     void mouseDoubleClickEvent(QMouseEvent* evt);
     void paintEvent(QPaintEvent*);
+    void contextMenuEvent(QContextMenuEvent *evt);
   private :
    QPoint  _startPoint,_endPoint, _beginPoint;
    vector<QPoint> _points;
