@@ -1,6 +1,7 @@
 #ifndef PAINTAREA_H
 #define PAINTAREA_H
 
+#include <Qt>
 #include <QWidget>
 #include <QMouseEvent>
 #include <QKeyEvent>
@@ -26,7 +27,8 @@ class PaintArea : public QWidget
     void mouseMoveEvent(QMouseEvent*);
     void mouseReleaseEvent(QMouseEvent*);
     void mouseDoubleClickEvent(QMouseEvent*);
-    void keyPressEvent(QKeyEvent* evt);
+    void keyPressEvent(QKeyEvent*);
+    void keyReleaseEvent(QKeyEvent*);
     void paintEvent(QPaintEvent*);
   private :
    QPoint  _startPoint,_endPoint, _beginPoint;
