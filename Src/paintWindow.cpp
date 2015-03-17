@@ -41,7 +41,7 @@ void PaintWindow::_createMenus(void) {
  _styleMenu = menubar->addMenu("&Style");
  _helpMenu = menubar->addMenu( tr("&Help") );
 
- _colorSubMenu = _styleMenu->addMenu("&Color");
+ _colorSubMenu = _toolMenu->addMenu("&Color");
 
 }
 //--------------------------------------------------------------------------------
