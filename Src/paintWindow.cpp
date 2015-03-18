@@ -32,6 +32,11 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
   _signalMapperColor->setMapping(_red, COLOR_RED);
   _signalMapperColor->setMapping(_otherColor, COLOR_OTHER);
 
+  _signalMapperWidth = new QSignalMapper(this);
+  _signalMapperWidth->setMapping(_littleWidth, LITTLE_WIDTH);
+  _signalMapperWidth->setMapping(_middleWidth, MEDIUM_WIDTH);
+  _signalMapperWidth->setMapping(_hightWidth, HIGHT_WIDTH);
+
   _connectSignals();
 }
 //--------------------------------------------------------------------------------
@@ -46,6 +51,7 @@ void PaintWindow::_createMenus(void) {
  _penMenu = _styleMenu->addMenu("&Pen");
 
  _colorSubMenu = _penMenu->addMenu("&Color");
+ _widthSubMenu = _penMenu->addMenu("&Width");
 
 }
 //--------------------------------------------------------------------------------
@@ -116,8 +122,17 @@ void PaintWindow::_createActions(void) {
   _green->setCheckable(true);
   _otherColor->setCheckable(true);
 
+  _toolsWidth = new QActionGroup( this );
+  _littleWidth = new QAction(tr("&Petit"),  this);
+  _middleWidth = new QAction(tr("&Moyen"), this);
+  _hightWidth = new QAction(tr("&Grand"), this);
+  _littleWidth->setCheckable(true);
+  _middleWidth->setCheckable(true);
+  _hightWidth->setCheckable(true);
+
   _popUpMenu = new QMenu();
   _popUpMenu->addMenu(_toolMenu);
+  _popUpMenu->addMenu(_styleMenu);
 
 }
 //--------------------------------------------------------------------------------
@@ -163,6 +178,14 @@ void PaintWindow::_connectActions(void) {
     _toolsColor->addAction(_red);
     _toolsColor->addAction(_green);
     _toolsColor->addAction(_otherColor);
+
+    _widthSubMenu->addAction(_littleWidth);
+    _widthSubMenu->addAction(_middleWidth);
+    _widthSubMenu->addAction(_hightWidth);
+
+    _toolsWidth->addAction(_littleWidth);
+    _toolsWidth->addAction(_middleWidth);
+    _toolsWidth->addAction(_hightWidth);
 
     _helpMenu->addAction(_aboutAct);
 }

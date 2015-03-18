@@ -3,8 +3,8 @@
 
 PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   qDebug() << "PaintArea::PaintArea(void)";
+  _startPoint = _endPoint = QPoint(-10,-10);
   this->setFocusPolicy(Qt::StrongFocus);
-  _startPoint = _endPoint = QPoint(0,0);
   _buffer = new QPixmap(parent->size());
   _buffer->fill(Qt::white);
   _release=false;
@@ -141,7 +141,7 @@ void PaintArea::setBuffer(QString fileName) {
 
 void PaintArea::resetBuffer() {
   QSize size = _buffer->size();
-  _startPoint = _endPoint = QPoint(0,0);
+  _startPoint = _endPoint = QPoint(-10,-10);
   _buffer = new QPixmap(size);
   _buffer->fill(Qt::white);
   qDebug() << "On reset le buffer";

@@ -19,6 +19,12 @@ enum colorsID {
 	COLOR_OTHER,
 };
 
+enum widthID {
+	LITTLE_WIDTH, 
+	MEDIUM_WIDTH, 
+	HIGHT_WIDTH,
+};
+
 enum menusID{
 	FILE_MENU_ID_NEW,
 	FILE_MENU_ID_OPEN, 
