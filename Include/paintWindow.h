@@ -28,6 +28,7 @@ class PaintWindow : public QMainWindow
   signals:
    void toolMapped(int digit);
    void toolMappedColor(int digit);
+   void toolMappedWidth(int digit);
   public slots :
     void quit(void);
     void showPopUp(QPoint value);

@@ -144,7 +144,6 @@ void PaintArea::resetBuffer() {
   _startPoint = _endPoint = QPoint(-10,-10);
   _buffer = new QPixmap(size);
   _buffer->fill(Qt::white);
-  qDebug() << "On reset le buffer";
   update();
 }
 
@@ -158,4 +157,9 @@ void PaintArea::changeColor(int color) {
 
 void PaintArea::changeColoration(QColor color) {
   _currentQColor = color;
+}
+
+void PaintArea::changeWidth(int width) {
+  _currentWidth = width;
+  qDebug() << "On change la largeur de trait";
 }

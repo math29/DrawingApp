@@ -213,6 +213,10 @@ void PaintWindow::_connectSignals(void) {
     connect(_black,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
     connect(_otherColor,SIGNAL(activated()),_signalMapperColor, SLOT(map()));
 
+    connect(_littleWidth,SIGNAL(activated()),_signalMapperWidth, SLOT(map()));
+    connect(_middleWidth,SIGNAL(activated()),_signalMapperWidth, SLOT(map()));
+    connect(_hightWidth,SIGNAL(activated()),_signalMapperWidth, SLOT(map()));
+
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
     connect(_signalMapper,SIGNAL(mapped(int)), this, SIGNAL(toolMapped(int)));
@@ -220,6 +224,9 @@ void PaintWindow::_connectSignals(void) {
 
     connect(_signalMapperColor,SIGNAL(mapped(int)), this, SIGNAL(toolMappedColor(int)));
     connect(this, SIGNAL(toolMappedColor(int)), _area, SLOT(changeColor(int)) );
+
+    connect(_signalMapperWidth,SIGNAL(mapped(int)), this, SIGNAL(toolMappedWidth(int)));
+    connect(this, SIGNAL(toolMappedWidth(int)), _area, SLOT(changeWidth(int)) );
 
     connect(_area, SIGNAL(popUpAsked(QPoint)), this, SLOT (showPopUp(QPoint)));
 }
