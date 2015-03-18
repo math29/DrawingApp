@@ -11,6 +11,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   _releaseDoubleClic = false;
   _enter = false;
   _esc = false;
+  _currentWidth = 1;
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
@@ -63,33 +64,39 @@ void PaintArea::paintEvent(QPaintEvent* evt)
   QPainter paintWindow(this);
   QPainter paintBuffer(_buffer);
   paintWindow.drawPixmap(0,0, *_buffer);
-  qDebug() << _currentColor;
+  QPen pen;
+
   switch(_currentColor) {
     case COLOR_BLUE :
-      paintWindow.setPen(QColor("blue"));
-      paintBuffer.setPen(QColor("blue"));
+      pen = QPen(QColor("blue"));
+      pen = QPen(QColor("blue"));
       break;
     case COLOR_BLACK :
-      paintWindow.setPen(QColor("black"));
-      paintBuffer.setPen(QColor("black"));
+      pen = QPen(QColor("black"));
+      pen = QPen(QColor("black"));
       break;
     case COLOR_RED :
-      paintWindow.setPen(QColor("red"));
-      paintBuffer.setPen(QColor("red"));
+      pen = QPen(QColor("red"));
+      pen = QPen(QColor("red"));
       break;
     case COLOR_YELLOW :
-      paintWindow.setPen(QColor("yellow"));
-      paintBuffer.setPen(QColor("yellow"));
+      pen = QPen(QColor("yellow"));
+      pen = QPen(QColor("yellow"));
       break;
     case COLOR_GREEN :
-      paintWindow.setPen(QColor("green"));
-      paintBuffer.setPen(QColor("green"));
+      pen = QPen(QColor("green"));
+      pen = QPen(QColor("green"));
       break;
     case COLOR_OTHER :
-      paintWindow.setPen(_currentQColor);
-      paintBuffer.setPen(_currentQColor);
+      pen = QPen(_currentQColor);
+      pen = QPen(_currentQColor);
       break;
   }
+
+  if(_currentWidth) pen.setWidth(_currentWidth);
+  paintWindow.setPen(pen);
+  paintBuffer.setPen(pen);
+
   qDebug() << "entre deux";
   switch(_currentTool) {
     case TOOLS_ID_FREEHAND :
@@ -160,6 +167,15 @@ void PaintArea::changeColoration(QColor color) {
 }
 
 void PaintArea::changeWidth(int width) {
-  _currentWidth = width;
-  qDebug() << "On change la largeur de trait";
+  switch(width) {
+    case LITTLE_WIDTH :
+      _currentWidth = 1;
+      break;
+    case MEDIUM_WIDTH :
+      _currentWidth = 10;
+      break;
+    case HIGHT_WIDTH :
+      _currentWidth = 20;
+      break;
+  }
 }
