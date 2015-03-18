@@ -11,7 +11,8 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   _releaseDoubleClic = false;
   _enter = false;
   _esc = false;
-  _currentWidth = 1;
+  _currentWidth = LITTLE_WIDTH;
+  _currentLine = SOLID_LINE;
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
@@ -69,27 +70,39 @@ void PaintArea::paintEvent(QPaintEvent* evt)
   switch(_currentColor) {
     case COLOR_BLUE :
       pen = QPen(QColor("blue"));
-      pen = QPen(QColor("blue"));
       break;
     case COLOR_BLACK :
-      pen = QPen(QColor("black"));
       pen = QPen(QColor("black"));
       break;
     case COLOR_RED :
       pen = QPen(QColor("red"));
-      pen = QPen(QColor("red"));
       break;
     case COLOR_YELLOW :
-      pen = QPen(QColor("yellow"));
       pen = QPen(QColor("yellow"));
       break;
     case COLOR_GREEN :
       pen = QPen(QColor("green"));
-      pen = QPen(QColor("green"));
       break;
     case COLOR_OTHER :
       pen = QPen(_currentQColor);
-      pen = QPen(_currentQColor);
+      break;
+  }
+
+  switch(_currentLine) {
+    case SOLID_LINE :
+      pen.setStyle(Qt::SolidLine);
+      break;
+    case DASH_LINE :
+      pen.setStyle(Qt::DashLine);
+      break;
+    case DOT_LINE :
+      pen.setStyle(Qt::DotLine);
+      break;
+    case DASH_DOT_LINE :
+      pen.setStyle(Qt::DashDotLine);
+      break;
+    case DASH_DOT_DOT_LINE :
+      pen.setStyle(Qt::DashDotDotLine);
       break;
   }
 
@@ -178,4 +191,8 @@ void PaintArea::changeWidth(int width) {
       _currentWidth = 20;
       break;
   }
+}
+
+void PaintArea::changeLine(int line) {
+  _currentLine = line;
 }

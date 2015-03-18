@@ -29,6 +29,7 @@ class PaintWindow : public QMainWindow
    void toolMapped(int digit);
    void toolMappedColor(int digit);
    void toolMappedWidth(int digit);
+   void toolMappedLine(int digit);
   public slots :
     void quit(void);
     void showPopUp(QPoint value);
@@ -49,15 +50,16 @@ class PaintWindow : public QMainWindow
    PaintArea *_area;
    // menus
    QToolBar *_toolBar;
-   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu, *_penMenu, *_widthSubMenu;
+   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu, *_penMenu, *_widthSubMenu, *_lineSubMenu;
    // actions
    QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
-   QActionGroup *_toolsQag, *_toolsColor, *_toolsWidth;
+   QActionGroup *_toolsQag, *_toolsColor, *_toolsWidth, *_toolsLine;
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct, *_textAct;
    QAction *_otherColor, *_green, *_red, *_yellow, *_black, *_blue;
    QAction *_littleWidth, *_middleWidth, *_hightWidth;
+   QAction *_solidLine, *_dashLine, *_dotLine, *_dashDotLine, *_dashDotDotLine;
    // mapping 
-   QSignalMapper *_signalMapper, *_signalMapperColor, *_signalMapperWidth;
+   QSignalMapper *_signalMapper, *_signalMapperColor, *_signalMapperWidth, *_signalMapperLine;
    //Dialog Box
    QMessageBox msgBox;
    //FileName

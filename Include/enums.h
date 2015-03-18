@@ -25,6 +25,14 @@ enum widthID {
 	HIGHT_WIDTH,
 };
 
+enum lineID {
+	SOLID_LINE, 
+	DASH_LINE, 
+	DOT_LINE,
+	DASH_DOT_LINE,
+	DASH_DOT_DOT_LINE,
+};
+
 enum menusID{
 	FILE_MENU_ID_NEW,
 	FILE_MENU_ID_OPEN, 

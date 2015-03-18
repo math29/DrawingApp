@@ -37,6 +37,13 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
   _signalMapperWidth->setMapping(_middleWidth, MEDIUM_WIDTH);
   _signalMapperWidth->setMapping(_hightWidth, HIGHT_WIDTH);
 
+  _signalMapperLine = new QSignalMapper(this);
+  _signalMapperLine->setMapping(_solidLine, SOLID_LINE);
+  _signalMapperLine->setMapping(_dashLine, DASH_LINE);
+  _signalMapperLine->setMapping(_dotLine, DOT_LINE);
+  _signalMapperLine->setMapping(_dashDotLine, DASH_DOT_LINE);
+  _signalMapperLine->setMapping(_dashDotDotLine, DASH_DOT_DOT_LINE);
+
   _connectSignals();
 }
 //--------------------------------------------------------------------------------
@@ -52,6 +59,7 @@ void PaintWindow::_createMenus(void) {
 
  _colorSubMenu = _penMenu->addMenu("&Color");
  _widthSubMenu = _penMenu->addMenu("&Width");
+ _lineSubMenu = _penMenu->addMenu("&Line");
 
 }
 //--------------------------------------------------------------------------------
@@ -130,6 +138,18 @@ void PaintWindow::_createActions(void) {
   _middleWidth->setCheckable(true);
   _hightWidth->setCheckable(true);
 
+  _toolsLine = new QActionGroup( this );
+  _solidLine = new QAction(tr("&Ligne pleine"),  this);
+  _dashLine = new QAction(tr("&Ligne coupe"),  this);
+  _dotLine = new QAction(tr("&Ligne pointilles"), this);
+  _dashDotLine = new QAction(tr("&Ligne coupe pointilles"), this);
+  _dashDotDotLine = new QAction(tr("&Ligne coupe pointipointilles"), this);
+  _solidLine->setCheckable(true);
+  _dashLine->setCheckable(true);
+  _dotLine->setCheckable(true);
+  _dashDotLine->setCheckable(true);
+  _dashDotDotLine->setCheckable(true);
+
   _popUpMenu = new QMenu();
   _popUpMenu->addMenu(_toolMenu);
   _popUpMenu->addMenu(_styleMenu);
@@ -187,6 +207,18 @@ void PaintWindow::_connectActions(void) {
     _toolsWidth->addAction(_middleWidth);
     _toolsWidth->addAction(_hightWidth);
 
+    _lineSubMenu->addAction(_solidLine);
+    _lineSubMenu->addAction(_dashLine);
+    _lineSubMenu->addAction(_dotLine);
+    _lineSubMenu->addAction(_dashDotLine);
+    _lineSubMenu->addAction(_dashDotDotLine);
+
+    _toolsLine->addAction(_solidLine);
+    _toolsLine->addAction(_dashLine);
+    _toolsLine->addAction(_dotLine);
+    _toolsLine->addAction(_dashDotLine);
+    _toolsLine->addAction(_dashDotDotLine);
+
     _helpMenu->addAction(_aboutAct);
 }
 
@@ -217,6 +249,12 @@ void PaintWindow::_connectSignals(void) {
     connect(_middleWidth,SIGNAL(activated()),_signalMapperWidth, SLOT(map()));
     connect(_hightWidth,SIGNAL(activated()),_signalMapperWidth, SLOT(map()));
 
+    connect(_solidLine,SIGNAL(activated()),_signalMapperLine, SLOT(map()));
+    connect(_dashLine,SIGNAL(activated()),_signalMapperLine, SLOT(map()));
+    connect(_dotLine,SIGNAL(activated()),_signalMapperLine, SLOT(map()));
+    connect(_dashDotLine,SIGNAL(activated()),_signalMapperLine, SLOT(map()));
+    connect(_dashDotDotLine,SIGNAL(activated()),_signalMapperLine, SLOT(map()));
+
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
     connect(_signalMapper,SIGNAL(mapped(int)), this, SIGNAL(toolMapped(int)));
@@ -227,6 +265,9 @@ void PaintWindow::_connectSignals(void) {
 
     connect(_signalMapperWidth,SIGNAL(mapped(int)), this, SIGNAL(toolMappedWidth(int)));
     connect(this, SIGNAL(toolMappedWidth(int)), _area, SLOT(changeWidth(int)) );
+
+    connect(_signalMapperLine,SIGNAL(mapped(int)), this, SIGNAL(toolMappedLine(int)));
+    connect(this, SIGNAL(toolMappedLine(int)), _area, SLOT(changeLine(int)) );
 
     connect(_area, SIGNAL(popUpAsked(QPoint)), this, SLOT (showPopUp(QPoint)));
 }

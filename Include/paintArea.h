@@ -27,6 +27,7 @@ class PaintArea : public QWidget
     void changeColor(int);
     void changeColoration(QColor);
     void changeWidth(int);
+    void changeLine(int);
   signals:
     void popUpAsked(QPoint value);
   protected :
@@ -42,7 +43,7 @@ class PaintArea : public QWidget
    QPoint  _startPoint,_endPoint, _beginPoint;
    QColor _currentQColor;
    QPixmap *_buffer;
-   int _currentTool, _currentColor, _currentWidth;
+   int _currentTool, _currentColor, _currentWidth, _currentLine;
    //vector<QPoint> _points;
    QPolygon polygon;
    
