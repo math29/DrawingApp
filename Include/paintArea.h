@@ -22,6 +22,7 @@ class PaintArea : public QWidget
     QPixmap getBuffer();
     void setBuffer(QString);
     void resetBuffer();
+    void _brushChooseColor();
   public slots:
     void setCurrentTool(int);
     void changeColor(int);
@@ -41,7 +42,7 @@ class PaintArea : public QWidget
     void contextMenuEvent(QContextMenuEvent *evt);
   private :
    QPoint  _startPoint,_endPoint, _beginPoint;
-   QColor _currentQColor;
+   QColor _currentQColor, _currentBrushColor;
    QPixmap *_buffer;
    int _currentTool, _currentColor, _currentWidth, _currentLine;
    //vector<QPoint> _points;

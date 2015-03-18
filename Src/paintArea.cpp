@@ -13,6 +13,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   _esc = false;
   _currentWidth = LITTLE_WIDTH;
   _currentLine = SOLID_LINE;
+  _currentBrushColor = Qt::white;
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
@@ -106,9 +107,11 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       break;
   }
 
-  if(_currentWidth) pen.setWidth(_currentWidth);
+  pen.setWidth(_currentWidth);
   paintWindow.setPen(pen);
   paintBuffer.setPen(pen);
+  paintWindow.setBrush(_currentBrushColor);
+  paintBuffer.setBrush(_currentBrushColor);
 
   qDebug() << "entre deux";
   switch(_currentTool) {
@@ -195,4 +198,8 @@ void PaintArea::changeWidth(int width) {
 
 void PaintArea::changeLine(int line) {
   _currentLine = line;
+}
+
+void PaintArea::_brushChooseColor(void) {
+  _currentBrushColor = QColorDialog::getColor(Qt::white, this);
 }

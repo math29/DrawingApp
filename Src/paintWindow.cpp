@@ -56,10 +56,13 @@ void PaintWindow::_createMenus(void) {
  _helpMenu = menubar->addMenu( tr("&Help") );
 
  _penMenu = _styleMenu->addMenu("&Pen");
+ _brushMenu = _styleMenu->addMenu("&Brush");
 
  _colorSubMenu = _penMenu->addMenu("&Color");
  _widthSubMenu = _penMenu->addMenu("&Width");
  _lineSubMenu = _penMenu->addMenu("&Line");
+
+ _brushColorSubMenu = _brushMenu->addMenu("&Couleur");
 
 }
 //--------------------------------------------------------------------------------
@@ -150,6 +153,8 @@ void PaintWindow::_createActions(void) {
   _dashDotLine->setCheckable(true);
   _dashDotDotLine->setCheckable(true);
 
+  _brushColor = new QAction(tr("&Couleur"), this);
+
   _popUpMenu = new QMenu();
   _popUpMenu->addMenu(_toolMenu);
   _popUpMenu->addMenu(_styleMenu);
@@ -219,6 +224,8 @@ void PaintWindow::_connectActions(void) {
     _toolsLine->addAction(_dashDotLine);
     _toolsLine->addAction(_dashDotDotLine);
 
+    _brushColorSubMenu->addAction(_brushColor);
+
     _helpMenu->addAction(_aboutAct);
 }
 
@@ -254,6 +261,8 @@ void PaintWindow::_connectSignals(void) {
     connect(_dotLine,SIGNAL(activated()),_signalMapperLine, SLOT(map()));
     connect(_dashDotLine,SIGNAL(activated()),_signalMapperLine, SLOT(map()));
     connect(_dashDotDotLine,SIGNAL(activated()),_signalMapperLine, SLOT(map()));
+
+    connect(_brushColor,SIGNAL(triggered()),this, SLOT(_brushChooseColor()));
 
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
@@ -347,4 +356,8 @@ void PaintWindow::quit(void)  {
 
 void PaintWindow::showPopUp(QPoint value) {
   _popUpMenu->exec(value, 0);
+}
+
+void PaintWindow::_brushChooseColor(void) {
+  _area->_brushChooseColor();
 }

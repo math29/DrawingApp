@@ -39,6 +39,7 @@ class PaintWindow : public QMainWindow
     void _saveFile(void);
     void _saveAsFile(void);
     void _about(void);
+    void _brushChooseColor(void);
   private :
    void _createMenus(void);
    void _createToolBars(void);
@@ -50,7 +51,7 @@ class PaintWindow : public QMainWindow
    PaintArea *_area;
    // menus
    QToolBar *_toolBar;
-   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu, *_penMenu, *_widthSubMenu, *_lineSubMenu;
+   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu, *_penMenu, *_widthSubMenu, *_lineSubMenu, *_brushMenu, *_brushColorSubMenu;
    // actions
    QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
    QActionGroup *_toolsQag, *_toolsColor, *_toolsWidth, *_toolsLine;
@@ -58,6 +59,7 @@ class PaintWindow : public QMainWindow
    QAction *_otherColor, *_green, *_red, *_yellow, *_black, *_blue;
    QAction *_littleWidth, *_middleWidth, *_hightWidth;
    QAction *_solidLine, *_dashLine, *_dotLine, *_dashDotLine, *_dashDotDotLine;
+   QAction *_brushColor;
    // mapping 
    QSignalMapper *_signalMapper, *_signalMapperColor, *_signalMapperWidth, *_signalMapperLine;
    //Dialog Box
