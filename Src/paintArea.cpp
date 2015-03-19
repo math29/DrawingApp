@@ -14,6 +14,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   _currentWidth = LITTLE_WIDTH;
   _currentLine = SOLID_LINE;
   _currentBrushColor = Qt::white;
+  _currentPattern = Qt::SolidPattern;
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
@@ -67,6 +68,9 @@ void PaintArea::paintEvent(QPaintEvent* evt)
   QPainter paintBuffer(_buffer);
   paintWindow.drawPixmap(0,0, *_buffer);
   QPen pen;
+  QBrush brush;
+  brush = QBrush(_currentBrushColor);
+  brush.setStyle(_currentPattern);
 
   switch(_currentColor) {
     case COLOR_BLUE :
@@ -110,8 +114,8 @@ void PaintArea::paintEvent(QPaintEvent* evt)
   pen.setWidth(_currentWidth);
   paintWindow.setPen(pen);
   paintBuffer.setPen(pen);
-  paintWindow.setBrush(_currentBrushColor);
-  paintBuffer.setBrush(_currentBrushColor);
+  paintWindow.setBrush(brush);
+  paintBuffer.setBrush(brush);
 
   qDebug() << "entre deux";
   switch(_currentTool) {
@@ -202,4 +206,36 @@ void PaintArea::changeLine(int line) {
 
 void PaintArea::_brushChooseColor(void) {
   _currentBrushColor = QColorDialog::getColor(Qt::white, this);
+}
+
+void PaintArea::changePattern(int pattern) {
+  switch(pattern) {
+    case SOLID_PATTERN :
+      _currentPattern = Qt::SolidPattern;
+      break;
+    case DENSE1_PATTERN :
+      _currentPattern = Qt::Dense1Pattern;
+      break;
+    case DENSE2_PATTERN :
+      _currentPattern = Qt::Dense2Pattern;
+      break;
+    case DENSE3_PATTERN :
+      _currentPattern = Qt::Dense3Pattern;
+      break;
+    case DENSE4_PATTERN :
+      _currentPattern = Qt::Dense4Pattern;
+      break;
+    case DENSE5_PATTERN :
+      _currentPattern = Qt::Dense5Pattern;
+      break;
+    case HOR_PATTERN :
+      _currentPattern = Qt::HorPattern;
+      break;
+    case VER_PATTERN :
+      _currentPattern = Qt::VerPattern;
+      break;
+    case CROSS_PATTERN :
+      _currentPattern = Qt::CrossPattern;
+      break;
+  }
 }

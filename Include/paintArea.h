@@ -10,6 +10,7 @@
 #include <vector>
 #include <QColor>
 #include <QColorDialog>
+#include <QBrush>
 
 using namespace std;
 
@@ -29,6 +30,7 @@ class PaintArea : public QWidget
     void changeColoration(QColor);
     void changeWidth(int);
     void changeLine(int);
+    void changePattern(int);
   signals:
     void popUpAsked(QPoint value);
   protected :
@@ -43,6 +45,7 @@ class PaintArea : public QWidget
   private :
    QPoint  _startPoint,_endPoint, _beginPoint;
    QColor _currentQColor, _currentBrushColor;
+   Qt::BrushStyle _currentPattern;
    QPixmap *_buffer;
    int _currentTool, _currentColor, _currentWidth, _currentLine;
    //vector<QPoint> _points;

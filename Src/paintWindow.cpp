@@ -44,6 +44,17 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
   _signalMapperLine->setMapping(_dashDotLine, DASH_DOT_LINE);
   _signalMapperLine->setMapping(_dashDotDotLine, DASH_DOT_DOT_LINE);
 
+  _signalMapperPattern = new QSignalMapper(this);
+  _signalMapperPattern->setMapping(_solidPattern, SOLID_PATTERN);
+  _signalMapperPattern->setMapping(_dense1Pattern, DENSE1_PATTERN);
+  _signalMapperPattern->setMapping(_dense2Pattern, DENSE2_PATTERN);
+  _signalMapperPattern->setMapping(_dense3Pattern, DENSE3_PATTERN);
+  _signalMapperPattern->setMapping(_dense4Pattern, DENSE4_PATTERN);
+  _signalMapperPattern->setMapping(_dense5Pattern, DENSE5_PATTERN);
+  _signalMapperPattern->setMapping(_horPattern, HOR_PATTERN);
+  _signalMapperPattern->setMapping(_verPattern, VER_PATTERN);
+  _signalMapperPattern->setMapping(_crossPattern, CROSS_PATTERN);
+
   _connectSignals();
 }
 //--------------------------------------------------------------------------------
@@ -63,6 +74,7 @@ void PaintWindow::_createMenus(void) {
  _lineSubMenu = _penMenu->addMenu("&Line");
 
  _brushColorSubMenu = _brushMenu->addMenu("&Couleur");
+ _patternSubMenu = _brushMenu->addMenu("&Fill");
 
 }
 //--------------------------------------------------------------------------------
@@ -153,7 +165,28 @@ void PaintWindow::_createActions(void) {
   _dashDotLine->setCheckable(true);
   _dashDotDotLine->setCheckable(true);
 
+  _toolsPattern = new QActionGroup( this );
+  _solidPattern  = new QAction(tr("&Solide"),  this);
+  _dense1Pattern = new QAction(tr("&Dense 1"),  this);
+  _dense2Pattern = new QAction(tr("&Dense 2"),  this);
+  _dense3Pattern = new QAction(tr("&Dense 3"),  this);
+  _dense4Pattern  = new QAction(tr("&Dense 4"),  this);
+  _dense5Pattern = new QAction(tr("&Dense 5"),  this);
+  _horPattern = new QAction(tr("&Lignes horizontales"),  this);
+  _verPattern = new QAction(tr("&Lignes verticales"),  this);
+  _crossPattern = new QAction(tr("&Cadrillage"),  this);
+  
   _brushColor = new QAction(tr("&Couleur"), this);
+
+  _solidPattern->setCheckable(true);
+  _dense1Pattern->setCheckable(true);
+  _dense2Pattern->setCheckable(true);
+  _dense3Pattern->setCheckable(true);
+  _dense4Pattern->setCheckable(true);
+  _dense5Pattern->setCheckable(true);
+  _horPattern->setCheckable(true);
+  _verPattern->setCheckable(true);
+  _crossPattern->setCheckable(true);
 
   _popUpMenu = new QMenu();
   _popUpMenu->addMenu(_toolMenu);
@@ -224,6 +257,26 @@ void PaintWindow::_connectActions(void) {
     _toolsLine->addAction(_dashDotLine);
     _toolsLine->addAction(_dashDotDotLine);
 
+    _patternSubMenu->addAction(_solidPattern);
+    _patternSubMenu->addAction(_dense1Pattern);
+    _patternSubMenu->addAction(_dense2Pattern);
+    _patternSubMenu->addAction(_dense3Pattern);
+    _patternSubMenu->addAction(_dense4Pattern);
+    _patternSubMenu->addAction(_dense5Pattern);
+    _patternSubMenu->addAction(_horPattern);
+    _patternSubMenu->addAction(_verPattern);
+    _patternSubMenu->addAction(_crossPattern);
+
+    _toolsPattern->addAction(_solidPattern);
+    _toolsPattern->addAction(_dense1Pattern);
+    _toolsPattern->addAction(_dense2Pattern);
+    _toolsPattern->addAction(_dense3Pattern);
+    _toolsPattern->addAction(_dense4Pattern);
+    _toolsPattern->addAction(_dense5Pattern);
+    _toolsPattern->addAction(_horPattern);
+    _toolsPattern->addAction(_verPattern);
+    _toolsPattern->addAction(_crossPattern);
+
     _brushColorSubMenu->addAction(_brushColor);
 
     _helpMenu->addAction(_aboutAct);
@@ -264,6 +317,16 @@ void PaintWindow::_connectSignals(void) {
 
     connect(_brushColor,SIGNAL(triggered()),this, SLOT(_brushChooseColor()));
 
+    connect(_solidPattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    connect(_dense1Pattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    connect(_dense2Pattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    connect(_dense3Pattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    connect(_dense4Pattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    connect(_dense5Pattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    connect(_horPattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    connect(_verPattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    connect(_crossPattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
     connect(_signalMapper,SIGNAL(mapped(int)), this, SIGNAL(toolMapped(int)));
@@ -277,6 +340,9 @@ void PaintWindow::_connectSignals(void) {
 
     connect(_signalMapperLine,SIGNAL(mapped(int)), this, SIGNAL(toolMappedLine(int)));
     connect(this, SIGNAL(toolMappedLine(int)), _area, SLOT(changeLine(int)) );
+
+    connect(_signalMapperPattern,SIGNAL(mapped(int)), this, SIGNAL(toolMappedPattern(int)));
+    connect(this, SIGNAL(toolMappedPattern(int)), _area, SLOT(changePattern(int)) );
 
     connect(_area, SIGNAL(popUpAsked(QPoint)), this, SLOT (showPopUp(QPoint)));
 }

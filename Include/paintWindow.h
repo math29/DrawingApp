@@ -30,6 +30,7 @@ class PaintWindow : public QMainWindow
    void toolMappedColor(int digit);
    void toolMappedWidth(int digit);
    void toolMappedLine(int digit);
+   void toolMappedPattern(int digit);
   public slots :
     void quit(void);
     void showPopUp(QPoint value);
@@ -51,17 +52,19 @@ class PaintWindow : public QMainWindow
    PaintArea *_area;
    // menus
    QToolBar *_toolBar;
-   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu, *_penMenu, *_widthSubMenu, *_lineSubMenu, *_brushMenu, *_brushColorSubMenu;
+   QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu, *_penMenu, *_widthSubMenu, *_lineSubMenu, *_brushMenu, *_brushColorSubMenu, *_patternSubMenu;
+   
    // actions
    QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
-   QActionGroup *_toolsQag, *_toolsColor, *_toolsWidth, *_toolsLine;
+   QActionGroup *_toolsQag, *_toolsColor, *_toolsWidth, *_toolsLine, *_toolsPattern;
+
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct, *_textAct;
    QAction *_otherColor, *_green, *_red, *_yellow, *_black, *_blue;
    QAction *_littleWidth, *_middleWidth, *_hightWidth;
    QAction *_solidLine, *_dashLine, *_dotLine, *_dashDotLine, *_dashDotDotLine;
-   QAction *_brushColor;
+   QAction *_brushColor, *_solidPattern, *_dense1Pattern, *_dense2Pattern, *_dense3Pattern, *_dense4Pattern, *_dense5Pattern, *_horPattern, *_verPattern, *_crossPattern;
    // mapping 
-   QSignalMapper *_signalMapper, *_signalMapperColor, *_signalMapperWidth, *_signalMapperLine;
+   QSignalMapper *_signalMapper, *_signalMapperColor, *_signalMapperWidth, *_signalMapperLine, *_signalMapperPattern;
    //Dialog Box
    QMessageBox msgBox;
    //FileName
