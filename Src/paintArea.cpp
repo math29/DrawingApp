@@ -18,7 +18,6 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
-  qDebug() << "PaintArea::mousePressEvent(void)";
   _trigger = true;
   _release = false;
   _releaseDoubleClic = false;
