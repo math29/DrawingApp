@@ -6,6 +6,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   this->setFocusPolicy(Qt::StrongFocus);
   _buffer = new QPixmap(parent->size());
   _buffer->fill(Qt::white);
+  _trigger = false;
   _release=false;
   _releaseDoubleClic = false;
   _enter = false;
@@ -17,6 +18,8 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
+  qDebug() << "PaintArea::mousePressEvent(void)";
+  _trigger = true;
   _release = false;
   _releaseDoubleClic = false;
   _startPoint = _endPoint = evt->pos();
@@ -44,13 +47,13 @@ void PaintArea::contextMenuEvent(QContextMenuEvent *evt) {
 }
 
 void PaintArea::keyPressEvent(QKeyEvent* evt) {
-    if (evt->key() == Qt::Key_Enter) _enter = true;
+    if (evt->key() == Qt::Key_Enter || evt->key() == Qt::Key_Return) _enter = true;
     if (evt->key() == Qt::Key_Escape) _esc = true;
     update();
 }
 
 void PaintArea::keyReleaseEvent(QKeyEvent* evt) {
-    if (evt->key() == Qt::Key_Enter) _enter = false;
+    if (evt->key() == Qt::Key_Enter || evt->key() == Qt::Key_Return) _enter = false;
     if (evt->key() == Qt::Key_Escape) _esc = false;
     update();
 }
@@ -128,18 +131,26 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       paintWindow.drawEllipse(QRect(_startPoint,_endPoint));
       break;
     case TOOLS_ID_POLYGON :
-        if (polygon.size() == 0) polygon << _startPoint;
-        polygon.setPoint(polygon.size()-1, _endPoint);
-        if (_release) {
+        // Ajout d'un point
+        if (_trigger) {
             polygon << _endPoint;
-            paintBuffer.drawPolyline(polygon);
+            _trigger = false; // Un seul point par mousePressEvent
         }
+
+        // Déplacer le point nouvellement créé
+        if (polygon.size() != 0)
+            polygon.setPoint(polygon.size()-1, _endPoint);
         paintWindow.drawPolyline(polygon);
-        if (_releaseDoubleClic) {
+        
+        // Terminer ou annuler le polygone
+        if (_enter) {
             paintBuffer.drawPolygon(polygon);
-            paintWindow.drawPolygon(polygon);
+            polygon.clear();
+        } else if (_esc) {
             polygon.clear();
         }
+
+        //qDebug() << polygon;
       break;
     default :
       break;
@@ -161,6 +172,7 @@ void PaintArea::setBuffer(QString fileName) {
 void PaintArea::resetBuffer() {
   QSize size = _buffer->size();
   _startPoint = _endPoint = QPoint(-10,-10);
+  polygon.clear();
   _buffer = new QPixmap(size);
   _buffer->fill(Qt::white);
   update();
