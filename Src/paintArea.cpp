@@ -46,14 +46,14 @@ void PaintArea::contextMenuEvent(QContextMenuEvent *evt) {
 
 void PaintArea::keyPressEvent(QKeyEvent* evt) {
     qDebug() << "PaintArea::keyPressEvent(void)";
-    if (evt->key() == Qt::Key_Enter) _enter = true;
+    if (evt->key() == Qt::Key_Enter || evt->key() == Qt::Key_Return) _enter = true;
     if (evt->key() == Qt::Key_Escape) _esc = true;
     update();
 }
 
 void PaintArea::keyReleaseEvent(QKeyEvent* evt) {
     qDebug() << "PaintArea::keyReleaseEvent(void)";
-    if (evt->key() == Qt::Key_Enter) _enter = false;
+    if (evt->key() == Qt::Key_Enter || evt->key() == Qt::Key_Return) _enter = false;
     if (evt->key() == Qt::Key_Escape) _esc = false;
     update();
 }
@@ -63,7 +63,7 @@ void PaintArea::paintEvent(QPaintEvent* evt)
   QPainter paintWindow(this);
   QPainter paintBuffer(_buffer);
   paintWindow.drawPixmap(0,0, *_buffer);
-  qDebug() << _currentColor;
+  //qDebug() << _currentColor;
   switch(_currentColor) {
     case COLOR_BLUE :
       paintWindow.setPen(QColor("blue"));
@@ -90,7 +90,7 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       paintBuffer.setPen(_currentQColor);
       break;
   }
-  qDebug() << "entre deux";
+  //qDebug() << "entre deux";
   switch(_currentTool) {
     case TOOLS_ID_FREEHAND :
       paintBuffer.drawPoint(_endPoint);
@@ -109,16 +109,12 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       paintWindow.drawEllipse(QRect(_startPoint,_endPoint));
       break;
     case TOOLS_ID_POLYGON :
-        if (polygon.size() == 0) polygon << _startPoint;
+        if (_release) polygon << _startPoint;
         polygon.setPoint(polygon.size()-1, _endPoint);
-        if (_release) {
-            polygon << _endPoint;
-            paintBuffer.drawPolyline(polygon);
-        }
         paintWindow.drawPolyline(polygon);
-        if (_releaseDoubleClic) {
+
+        if (_enter) {
             paintBuffer.drawPolygon(polygon);
-            paintWindow.drawPolygon(polygon);
             polygon.clear();
         }
       break;
