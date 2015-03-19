@@ -5,9 +5,6 @@
 
 //--------------------------------------------------------------------------------
 PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
-   qDebug() << "PaintWindow::PaintWindow(QWidget *parent)";
-   qDebug() << "Date: " << QDate::currentDate();
-
    _createMenus();
    _createActions();
    _createToolBars();
@@ -115,6 +112,12 @@ void PaintWindow::_createActions(void) {
   _exitAct->setIcon(QIcon(":/Images/exit.png"));
   _exitAct->setData(QVariant("_quitAct data"));
 
+  _resetAct = new QAction(QIcon(":/Images/clear.png"), tr("&Reset..."), this);
+  _resetAct->setShortcut(tr("Ctrl+R"));
+  _resetAct->setToolTip(tr("Reset tooltip"));
+  _resetAct->setStatusTip(tr("Reset status"));
+  _resetAct->setData(QVariant("_resetAct data"));
+
   _aboutAct    = new QAction(tr("&About Us.."), this);
 
   _toolsQag = new QActionGroup( this );
@@ -191,6 +194,7 @@ void PaintWindow::_createActions(void) {
   _popUpMenu = new QMenu();
   _popUpMenu->addMenu(_toolMenu);
   _popUpMenu->addMenu(_styleMenu);
+  _popUpMenu->addAction(_resetAct);
 
 }
 //--------------------------------------------------------------------------------
@@ -201,6 +205,7 @@ void PaintWindow::_connectActions(void) {
     _fileMenu->addAction(_saveAct);
     _fileMenu->addAction(_saveAsAct);
     _fileMenu->addSeparator();
+    _fileMenu->addAction(_resetAct);
     _fileMenu->addAction(_exitAct);
 
     _toolBar->addAction(_newAct);
@@ -290,6 +295,7 @@ void PaintWindow::_connectSignals(void) {
     connect(_saveAct, SIGNAL(triggered()), this,SLOT(_saveFile( )) );
     connect(_saveAsAct, SIGNAL(triggered()), this,SLOT(_saveAsFile( )) );
     connect(_exitAct,SIGNAL(activated()), this, SLOT(quit()));
+    connect(_resetAct, SIGNAL(triggered()), this,SLOT(_resetFile( )) );
 
     connect(_freehandAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
     connect(_lineAct,SIGNAL(activated()),_signalMapper, SLOT(map()));
@@ -364,12 +370,10 @@ void PaintWindow::_newFile(void)  {
         _area->update();
         _saveFile();
         _area->update();
-        qDebug() << "Switch : NewFile : On a fini la sauvegarde !";
     case QMessageBox::Discard:
         // Don't Save was clicked
         _area->resetBuffer();
         _fileName = "";
-        qDebug() << "Switch : NewFile : On a fini le reset extc ... !";
         break;
     case QMessageBox::Cancel:
         // Cancel was clicked
@@ -378,13 +382,11 @@ void PaintWindow::_newFile(void)  {
         // should never be reached
         break;
   }
-    qDebug() << "PaintWindow::_newFile(void)";
 }
 
 void PaintWindow::_openFile(void) {
     _fileName = QFileDialog::getOpenFileName (this, tr("Choose a File"), "./Saves", tr("Images (*.png *.xpm *.jpg)"));
     _area->setBuffer(_fileName);
-    qDebug() << "PaintWindow::_openFile(void)";
 }
 
 void PaintWindow::_saveFile(void)  {
@@ -394,13 +396,11 @@ void PaintWindow::_saveFile(void)  {
         _fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
         _area->getBuffer().save(_fileName, "PNG");
     }
-    qDebug() << "PaintWindow::_saveFile(void)";
 }
 
 void PaintWindow::_saveAsFile(void)  {
     _fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
     _area->getBuffer().save(_fileName, "PNG");
-    qDebug() << "PaintWindow::_saveAsFile(void)";
 }
 
 void PaintWindow::quit(void)  {
@@ -426,4 +426,25 @@ void PaintWindow::showPopUp(QPoint value) {
 
 void PaintWindow::_brushChooseColor(void) {
   _area->_brushChooseColor();
+}
+
+void PaintWindow::_resetFile(void)  {
+  msgBox.setText("Si vous continuez vous allez perdre toutes vos modifications.");
+  msgBox.setInformativeText("Etes vous sûr de vouloir tout effacer ?");
+  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+  msgBox.setDefaultButton(QMessageBox::No);
+  int ret = msgBox.exec();
+
+  switch (ret) {
+    case QMessageBox::Yes:
+        // Save was clicked
+        _area->resetBuffer();
+        _area->update();
+        break;
+    case QMessageBox::No:
+        break;
+    default:
+        // should never be reached
+        break;
+  }
 }

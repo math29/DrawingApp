@@ -41,6 +41,7 @@ class PaintWindow : public QMainWindow
     void _saveAsFile(void);
     void _about(void);
     void _brushChooseColor(void);
+    void _resetFile(void);
   private :
    void _createMenus(void);
    void _createToolBars(void);
@@ -55,7 +56,7 @@ class PaintWindow : public QMainWindow
    QMenu *_fileMenu, *_toolMenu, *_styleMenu, *_helpMenu, *_colorSubMenu, *_popUpMenu, *_penMenu, *_widthSubMenu, *_lineSubMenu, *_brushMenu, *_brushColorSubMenu, *_patternSubMenu;
    
    // actions
-   QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct;
+   QAction *_newAct, *_saveAct, *_saveAsAct, *_openAct, *_exitAct, *_aboutAct, *_resetAct;
    QActionGroup *_toolsQag, *_toolsColor, *_toolsWidth, *_toolsLine, *_toolsPattern;
 
    QAction *_freehandAct, *_lineAct, *_rectAct, *_polyAct, *_circleAct, *_textAct;

@@ -2,7 +2,6 @@
 #include "paintArea.h"
 
 PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
-  qDebug() << "PaintArea::PaintArea(void)";
   _startPoint = _endPoint = QPoint(-10,-10);
   this->setFocusPolicy(Qt::StrongFocus);
   _buffer = new QPixmap(parent->size());
@@ -18,7 +17,6 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
-  qDebug() << "PaintArea::mousePressEvent(void)";
   _release = false;
   _releaseDoubleClic = false;
   _startPoint = _endPoint = evt->pos();
@@ -26,20 +24,17 @@ void PaintArea::mousePressEvent(QMouseEvent* evt) {
 
 void PaintArea::mouseMoveEvent(QMouseEvent* evt) 
 {
-// qDebug() << "PaintArea::mouseMoveEvent(void)";
   _endPoint = evt->pos(); 
   update();
 }
 void PaintArea::mouseReleaseEvent(QMouseEvent* evt) 
 {
-  qDebug() << "PaintArea::mouseReleaseEvent(void)";
   _release=true;
   update();
 
 }
 
 void PaintArea::mouseDoubleClickEvent (QMouseEvent* evt) {
-  qDebug() << "PaintArea::mouseDoubleClickEvent(void)";
   _releaseDoubleClic = true;
   update();
 }
@@ -49,14 +44,12 @@ void PaintArea::contextMenuEvent(QContextMenuEvent *evt) {
 }
 
 void PaintArea::keyPressEvent(QKeyEvent* evt) {
-    qDebug() << "PaintArea::keyPressEvent(void)";
     if (evt->key() == Qt::Key_Enter) _enter = true;
     if (evt->key() == Qt::Key_Escape) _esc = true;
     update();
 }
 
 void PaintArea::keyReleaseEvent(QKeyEvent* evt) {
-    qDebug() << "PaintArea::keyReleaseEvent(void)";
     if (evt->key() == Qt::Key_Enter) _enter = false;
     if (evt->key() == Qt::Key_Escape) _esc = false;
     update();
@@ -117,7 +110,6 @@ void PaintArea::paintEvent(QPaintEvent* evt)
   paintWindow.setBrush(brush);
   paintBuffer.setBrush(brush);
 
-  qDebug() << "entre deux";
   switch(_currentTool) {
     case TOOLS_ID_FREEHAND :
       paintBuffer.drawPoint(_endPoint);
@@ -177,7 +169,6 @@ void PaintArea::resetBuffer() {
 void PaintArea::changeColor(int color) {
   _currentColor = color;
   if(color == COLOR_OTHER) {
-    qDebug() << "ici on lance la coloration";
     changeColoration(QColorDialog::getColor(Qt::white, this));
   }
 }
