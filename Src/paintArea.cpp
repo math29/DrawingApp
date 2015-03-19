@@ -7,6 +7,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   this->setFocusPolicy(Qt::StrongFocus);
   _buffer = new QPixmap(parent->size());
   _buffer->fill(Qt::white);
+  _trigger = false;
   _release=false;
   _releaseDoubleClic = false;
   _enter = false;
@@ -15,6 +16,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
   qDebug() << "PaintArea::mousePressEvent(void)";
+  _trigger = true;
   _release = false;
   _releaseDoubleClic = false;
   _startPoint = _endPoint = evt->pos();
@@ -109,14 +111,26 @@ void PaintArea::paintEvent(QPaintEvent* evt)
       paintWindow.drawEllipse(QRect(_startPoint,_endPoint));
       break;
     case TOOLS_ID_POLYGON :
-        if (_release) polygon << _startPoint;
-        polygon.setPoint(polygon.size()-1, _endPoint);
-        paintWindow.drawPolyline(polygon);
+        // Ajout d'un point
+        if (_trigger) {
+            polygon << _endPoint;
+            _trigger = false; // Un seul point par mousePressEvent
+        }
 
+        // Déplacer le point nouvellement créé
+        if (polygon.size() != 0)
+            polygon.setPoint(polygon.size()-1, _endPoint);
+        paintWindow.drawPolyline(polygon);
+        
+        // Terminer ou annuler le polygone
         if (_enter) {
             paintBuffer.drawPolygon(polygon);
             polygon.clear();
+        } else if (_esc) {
+            polygon.clear();
         }
+
+        //qDebug() << polygon;
       break;
     default :
       break;
@@ -138,6 +152,7 @@ void PaintArea::setBuffer(QString fileName) {
 void PaintArea::resetBuffer() {
   QSize size = _buffer->size();
   _startPoint = _endPoint = QPoint(-10,-10);
+  polygon.clear();
   _buffer = new QPixmap(size);
   _buffer->fill(Qt::white);
   update();

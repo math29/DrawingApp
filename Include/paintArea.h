@@ -46,7 +46,7 @@ class PaintArea : public QWidget
    //vector<QPoint> _points;
    QPolygon polygon;
    
-   bool _release, _releaseDoubleClic, _enter, _esc;
+   bool _trigger, _release, _releaseDoubleClic, _enter, _esc;
 };
 #endif
 
