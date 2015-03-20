@@ -11,7 +11,11 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
    _connectActions();
 
   _area = new PaintArea(this);
-   setCentralWidget(_area);
+  QGraphicsView view(_area);
+  QGraphicsRectItem *rect = _area->addRect(QRectF(0,0,50,50));
+  rect->setFlag(QGraphicsItem::ItemIsMovable);
+  view.show();
+
 
   _signalMapper = new QSignalMapper(this);
   _signalMapper->setMapping(_freehandAct, TOOLS_ID_FREEHAND);
@@ -357,94 +361,94 @@ void PaintWindow::_about(void) {
     QMessageBox::information( this,"About Us","Developpeur : Mathieu ALLAIN \n Email : maaath29@gmail.com","Au boulot !");
 }
 //--------------------------------------------------------------------------------
-void PaintWindow::_newFile(void)  {
-  msgBox.setText("Si vous continuez vous allez perdre toutes les modifications non sauvegardees.");
-  msgBox.setInformativeText("Voulez vous sauvegarder?");
-  msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-  msgBox.setDefaultButton(QMessageBox::Save);
-  int ret = msgBox.exec();
+// void PaintWindow::_newFile(void)  {
+//   msgBox.setText("Si vous continuez vous allez perdre toutes les modifications non sauvegardees.");
+//   msgBox.setInformativeText("Voulez vous sauvegarder?");
+//   msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+//   msgBox.setDefaultButton(QMessageBox::Save);
+//   int ret = msgBox.exec();
 
-  switch (ret) {
-    case QMessageBox::Save:
-        // Save was clicked
-        _area->update();
-        _saveFile();
-        _area->update();
-    case QMessageBox::Discard:
-        // Don't Save was clicked
-        _area->resetBuffer();
-        _fileName = "";
-        break;
-    case QMessageBox::Cancel:
-        // Cancel was clicked
-        break;
-    default:
-        // should never be reached
-        break;
-  }
-}
+//   switch (ret) {
+//     case QMessageBox::Save:
+//         // Save was clicked
+//         _area->update();
+//         _saveFile();
+//         _area->update();
+//     case QMessageBox::Discard:
+//         // Don't Save was clicked
+//         _area->resetBuffer();
+//         _fileName = "";
+//         break;
+//     case QMessageBox::Cancel:
+//         // Cancel was clicked
+//         break;
+//     default:
+//         // should never be reached
+//         break;
+//   }
+// }
 
-void PaintWindow::_openFile(void) {
-    _fileName = QFileDialog::getOpenFileName (this, tr("Choose a File"), "./Saves", tr("Images (*.png *.xpm *.jpg)"));
-    _area->setBuffer(_fileName);
-}
+// void PaintWindow::_openFile(void) {
+//     _fileName = QFileDialog::getOpenFileName (this, tr("Choose a File"), "./Saves", tr("Images (*.png *.xpm *.jpg)"));
+//     _area->setBuffer(_fileName);
+// }
 
-void PaintWindow::_saveFile(void)  {
-    if(_fileName != NULL) {
-        _area->getBuffer().save(_fileName, "PNG");
-    }else {
-        _fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
-        _area->getBuffer().save(_fileName, "PNG");
-    }
-}
+// void PaintWindow::_saveFile(void)  {
+//     if(_fileName != NULL) {
+//         _area->getBuffer().save(_fileName, "PNG");
+//     }else {
+//         _fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
+//         _area->getBuffer().save(_fileName, "PNG");
+//     }
+// }
 
-void PaintWindow::_saveAsFile(void)  {
-    _fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
-    _area->getBuffer().save(_fileName, "PNG");
-}
+// void PaintWindow::_saveAsFile(void)  {
+//     _fileName = QFileDialog::getSaveFileName (this, tr("Save File"), "./Saves/Sauvegarde.png", tr("Images (*.png *.xpm *.jpg)"));
+//     _area->getBuffer().save(_fileName, "PNG");
+// }
 
-void PaintWindow::quit(void)  {
-  msgBox.setText("Etes vous sur de vouloir quitter ?");
-  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-  msgBox.setDefaultButton(QMessageBox::No);
-  int ret = msgBox.exec();
+// void PaintWindow::quit(void)  {
+//   msgBox.setText("Etes vous sur de vouloir quitter ?");
+//   msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+//   msgBox.setDefaultButton(QMessageBox::No);
+//   int ret = msgBox.exec();
 
-  switch (ret) {
-    case QMessageBox::Yes:
-        exit(0);
-        break;
-    case QMessageBox::No:
-        break;
-    default:
-        break;
-  }
-}
+//   switch (ret) {
+//     case QMessageBox::Yes:
+//         exit(0);
+//         break;
+//     case QMessageBox::No:
+//         break;
+//     default:
+//         break;
+//   }
+// }
 
-void PaintWindow::showPopUp(QPoint value) {
-  _popUpMenu->exec(value, 0);
-}
+// void PaintWindow::showPopUp(QPoint value) {
+//   _popUpMenu->exec(value, 0);
+// }
 
-void PaintWindow::_brushChooseColor(void) {
-  _area->_brushChooseColor();
-}
+// void PaintWindow::_brushChooseColor(void) {
+//   _area->_brushChooseColor();
+// }
 
-void PaintWindow::_resetFile(void)  {
-  msgBox.setText("Si vous continuez vous allez perdre toutes vos modifications.");
-  msgBox.setInformativeText("Etes vous sûr de vouloir tout effacer ?");
-  msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-  msgBox.setDefaultButton(QMessageBox::No);
-  int ret = msgBox.exec();
+// void PaintWindow::_resetFile(void)  {
+//   msgBox.setText("Si vous continuez vous allez perdre toutes vos modifications.");
+//   msgBox.setInformativeText("Etes vous sûr de vouloir tout effacer ?");
+//   msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+//   msgBox.setDefaultButton(QMessageBox::No);
+//   int ret = msgBox.exec();
 
-  switch (ret) {
-    case QMessageBox::Yes:
-        // Save was clicked
-        _area->resetBuffer();
-        _area->update();
-        break;
-    case QMessageBox::No:
-        break;
-    default:
-        // should never be reached
-        break;
-  }
-}
+//   switch (ret) {
+//     case QMessageBox::Yes:
+//         // Save was clicked
+//         _area->resetBuffer();
+//         _area->update();
+//         break;
+//     case QMessageBox::No:
+//         break;
+//     default:
+//         // should never be reached
+//         break;
+//   }
+// }

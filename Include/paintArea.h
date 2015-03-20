@@ -1,7 +1,6 @@
 #ifndef PAINTAREA_H
 #define PAINTAREA_H
 
-#include <QWidget>
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
@@ -12,46 +11,50 @@
 #include <QColorDialog>
 #include <QBrush>
 
+// Includes lies au QGrahpicsScene
+#include <QGraphicsScene>
+#include <QGraphicsRectItem>
+
 using namespace std;
 
-class PaintArea : public QWidget
+class PaintArea : public QGraphicsScene
 {
   Q_OBJECT
 
   public:
-    PaintArea(QWidget *parent = 0);
-    QPixmap getBuffer();
-    void setBuffer(QString);
-    void resetBuffer();
-    void _brushChooseColor();
-  public slots:
-    void setCurrentTool(int);
-    void changeColor(int);
-    void changeColoration(QColor);
-    void changeWidth(int);
-    void changeLine(int);
-    void changePattern(int);
-  signals:
-    void popUpAsked(QPoint value);
+    PaintArea(QObject *parent = 0);
+  //   QPixmap getBuffer();
+  //   void setBuffer(QString);
+  //   void resetBuffer();
+  //   void _brushChooseColor();
+  // public slots:
+  //   void setCurrentTool(int);
+  //   void changeColor(int);
+  //   void changeColoration(QColor);
+  //   void changeWidth(int);
+  //   void changeLine(int);
+  //   void changePattern(int);
+  // signals:
+  //   void popUpAsked(QPoint value);
   protected :
-    void mousePressEvent(QMouseEvent*);
-    void mouseMoveEvent(QMouseEvent*);
-    void mouseReleaseEvent(QMouseEvent*);
-    void mouseDoubleClickEvent(QMouseEvent*);
-    void keyPressEvent(QKeyEvent*);
-    void keyReleaseEvent(QKeyEvent*);
+  //   void mousePressEvent(QMouseEvent*);
+  //   void mouseMoveEvent(QMouseEvent*);
+  //   void mouseReleaseEvent(QMouseEvent*);
+  //   void mouseDoubleClickEvent(QMouseEvent*);
+  //   void keyPressEvent(QKeyEvent*);
+  //   void keyReleaseEvent(QKeyEvent*);
     void paintEvent(QPaintEvent*);
-    void contextMenuEvent(QContextMenuEvent *evt);
+  //   void contextMenuEvent(QContextMenuEvent *evt);
   private :
-   QPoint  _startPoint,_endPoint, _beginPoint;
-   QColor _currentQColor, _currentBrushColor;
-   Qt::BrushStyle _currentPattern;
-   QPixmap *_buffer;
-   int _currentTool, _currentColor, _currentWidth, _currentLine;
-   //vector<QPoint> _points;
-   QPolygon polygon;
+   // QPoint  _startPoint,_endPoint, _beginPoint;
+   // QColor _currentQColor, _currentBrushColor;
+   // Qt::BrushStyle _currentPattern;
+   // QPixmap *_buffer;
+   // int _currentTool, _currentColor, _currentWidth, _currentLine;
+   // //vector<QPoint> _points;
+   // QPolygon polygon;
    
-   bool _trigger, _release, _releaseDoubleClic, _enter, _esc;
+   // bool _trigger, _release, _releaseDoubleClic, _enter, _esc;
 };
 #endif
 

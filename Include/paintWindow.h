@@ -18,6 +18,10 @@
 #include <QDate>
 #include <QMessageBox>
 
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QRectF>
+
 #include "paintArea.h"
 
 class PaintWindow : public QMainWindow
@@ -32,16 +36,16 @@ class PaintWindow : public QMainWindow
    void toolMappedLine(int digit);
    void toolMappedPattern(int digit);
   public slots :
-    void quit(void);
-    void showPopUp(QPoint value);
+    //void quit(void);
+    // void showPopUp(QPoint value);
   private slots :
-    void _newFile(void);
-    void _openFile(void);
-    void _saveFile(void);
-    void _saveAsFile(void);
+    // void _newFile(void);
+    // void _openFile(void);
+    // void _saveFile(void);
+    // void _saveAsFile(void);
     void _about(void);
-    void _brushChooseColor(void);
-    void _resetFile(void);
+    // void _brushChooseColor(void);
+    // void _resetFile(void);
   private :
    void _createMenus(void);
    void _createToolBars(void);
