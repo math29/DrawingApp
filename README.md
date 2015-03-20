@@ -7,6 +7,13 @@ Editeur graphique genre Paint réalisé en C++ avec Qt
 - Option de gestion du contenu des figues (couleurs, patterns)
 - Ouvrir, sauvegarder, quitter, clear ...
 
+<h3> Utilisation </h3>
+<h4> Polygone </h4>
+- Cliquez pour placer les points de votre polygone un par un
+- Une fois tous les points placés, appuyez sur ENTRER pour fermer la figure
+- Vous pouvez annuler à tout moment un tracer en appuyant sur ECHAP
+
+
 <h1> Installation </h1>
 <ul>
   <li> Installer Qt4 </li>
