@@ -3,10 +3,16 @@
 
 #include <QWidget>
 #include <QMouseEvent>
+#include <QKeyEvent>
 #include <QPainter>
 #include <QDebug>
 #include <iostream>
 #include <vector>
+#include <QColor>
+#include <QColorDialog>
+#include <QFontDialog>
+#include <QBrush>
+
 using namespace std;
 
 class PaintArea : public QWidget
@@ -18,20 +24,39 @@ class PaintArea : public QWidget
     QPixmap getBuffer();
     void setBuffer(QString);
     void resetBuffer();
+    void _brushChooseColor();
+    void _chooseFont();
   public slots:
     void setCurrentTool(int);
+    void changeColor(int);
+    void changeColoration(QColor);
+    void changeWidth(int);
+    void changeLine(int);
+    void changePattern(int);
+  signals:
+    void popUpAsked(QPoint value);
   protected :
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent*);
     void mouseReleaseEvent(QMouseEvent*);
-    void mouseDoubleClickEvent(QMouseEvent* evt);
+    void mouseDoubleClickEvent(QMouseEvent*);
+    void keyPressEvent(QKeyEvent*);
+    void keyReleaseEvent(QKeyEvent*);
     void paintEvent(QPaintEvent*);
+    void contextMenuEvent(QContextMenuEvent *evt);
   private :
    QPoint  _startPoint,_endPoint, _beginPoint;
-   vector<QPoint> _points;
+   QColor _currentQColor, _currentBrushColor;
+   QFont _currentFont;
+   Qt::BrushStyle _currentPattern;
    QPixmap *_buffer;
-   int _currentTool;
-   bool _release, _releaseDoubleClic;
+   int _currentTool, _currentColor, _currentWidth, _currentLine;
+   //vector<QPoint> _points;
+   QPolygon polygon;
+   
+   bool _trigger, _release, _releaseDoubleClic, _enter, _esc;
+   QString _key, text;
+   QRect textWrapper;
 };
 #endif
 

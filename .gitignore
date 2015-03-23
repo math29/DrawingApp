@@ -14,7 +14,7 @@
 # Qt-es
 
 *.sublime-workspace
-
+Saves/*
 /.qmake.cache
 /.qmake.stash
 *.pro.user

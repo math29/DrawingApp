@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
   PaintWindow window;
 
-  window.setWindowTitle("Application skeleton");
+  window.setWindowTitle("DrawingApp 2015");
   window.show();
   center(window);
 
