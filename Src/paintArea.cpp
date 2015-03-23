@@ -11,6 +11,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   _releaseDoubleClic = false;
   _enter = false;
   _esc = false;
+  _key= "";
   _currentWidth = LITTLE_WIDTH;
   _currentLine = SOLID_LINE;
   _currentBrushColor = Qt::white;
@@ -46,7 +47,11 @@ void PaintArea::contextMenuEvent(QContextMenuEvent *evt) {
 }
 
 void PaintArea::keyPressEvent(QKeyEvent* evt) {
-    if (evt->key() == Qt::Key_Enter || evt->key() == Qt::Key_Return) _enter = true;
+    _key = evt->text();
+    if (evt->key() == Qt::Key_Enter || evt->key() == Qt::Key_Return) {
+	_enter = true;
+	_key = "\n";
+    }
     if (evt->key() == Qt::Key_Escape) _esc = true;
     update();
 }
@@ -148,8 +153,32 @@ void PaintArea::paintEvent(QPaintEvent* evt)
         } else if (_esc) {
             polygon.clear();
         }
-
-        //qDebug() << polygon;
+      break;
+    case TOOLS_ID_TEXT :
+	// Styles zone de texte
+	pen.setStyle(Qt::DotLine);
+	pen.setWidth(1);
+	paintWindow.setPen(pen);
+	paintWindow.setBrush(QBrush());
+	
+	if (_trigger) { // Création zone de texte
+	    paintBuffer.drawText(textWrapper, Qt::TextWordWrap, text);
+	    text.clear();
+	    _trigger = false;
+	} else if (_esc) { // Annulation texte
+	    text.clear();
+	    _key.clear();
+	    textWrapper = QRect();
+	} else if (_release) { // Écriture du texte
+	    text.append(_key);
+	    _key.clear();
+	    paintWindow.drawText(textWrapper, Qt::TextWordWrap, text);
+	} else { // Dimensionnement zone de texte
+	    textWrapper = QRect(_startPoint, _endPoint);
+	}
+	
+	// Zone de texte
+	paintWindow.drawRect(textWrapper);
       break;
     default :
       break;
@@ -172,6 +201,7 @@ void PaintArea::resetBuffer() {
   QSize size = _buffer->size();
   _startPoint = _endPoint = QPoint(-10,-10);
   polygon.clear();
+  text.clear();
   _buffer = new QPixmap(size);
   _buffer->fill(Qt::white);
   update();

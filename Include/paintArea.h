@@ -52,6 +52,8 @@ class PaintArea : public QWidget
    QPolygon polygon;
    
    bool _trigger, _release, _releaseDoubleClic, _enter, _esc;
+   QString _key, text;
+   QRect textWrapper;
 };
 #endif
 
