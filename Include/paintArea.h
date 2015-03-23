@@ -10,6 +10,7 @@
 #include <vector>
 #include <QColor>
 #include <QColorDialog>
+#include <QFontDialog>
 #include <QBrush>
 
 using namespace std;
@@ -24,6 +25,7 @@ class PaintArea : public QWidget
     void setBuffer(QString);
     void resetBuffer();
     void _brushChooseColor();
+    void _chooseFont();
   public slots:
     void setCurrentTool(int);
     void changeColor(int);
@@ -45,6 +47,7 @@ class PaintArea : public QWidget
   private :
    QPoint  _startPoint,_endPoint, _beginPoint;
    QColor _currentQColor, _currentBrushColor;
+   QFont _currentFont;
    Qt::BrushStyle _currentPattern;
    QPixmap *_buffer;
    int _currentTool, _currentColor, _currentWidth, _currentLine;

@@ -16,6 +16,7 @@ PaintArea::PaintArea(QWidget *parent) : QWidget(parent) {
   _currentLine = SOLID_LINE;
   _currentBrushColor = Qt::white;
   _currentPattern = Qt::SolidPattern;
+  _currentFont = QFont();
 }
 
 void PaintArea::mousePressEvent(QMouseEvent* evt) {
@@ -71,6 +72,8 @@ void PaintArea::paintEvent(QPaintEvent* evt)
   QBrush brush;
   brush = QBrush(_currentBrushColor);
   brush.setStyle(_currentPattern);
+  paintWindow.setFont(_currentFont);
+  paintBuffer.setFont(_currentFont);
 
   switch(_currentColor) {
     case COLOR_BLUE :
@@ -238,6 +241,10 @@ void PaintArea::changeLine(int line) {
 
 void PaintArea::_brushChooseColor(void) {
   _currentBrushColor = QColorDialog::getColor(Qt::white, this);
+}
+
+void PaintArea::_chooseFont(void) {
+  _currentFont = QFontDialog::getFont(NULL, QFont(), this);
 }
 
 void PaintArea::changePattern(int pattern) {

@@ -58,20 +58,20 @@ PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent) {
 void PaintWindow::_createMenus(void) {
  QMenuBar* menubar = menuBar();
  statusBar()->showMessage("Ready");
- _fileMenu = menubar->addMenu( tr("&File") );
- _toolMenu = menubar->addMenu("&tool");
- _styleMenu = menubar->addMenu("&Style");
- _helpMenu = menubar->addMenu( tr("&Help") );
+ _fileMenu = menubar->addMenu( tr("&File"));
+ _toolMenu = menubar->addMenu(tr("&tool"));
+ _styleMenu = menubar->addMenu(tr("&Style"));
+ _helpMenu = menubar->addMenu(tr("&Help"));
 
- _penMenu = _styleMenu->addMenu("&Pen");
- _brushMenu = _styleMenu->addMenu("&Brush");
+ _penMenu = _styleMenu->addMenu(tr("&Pen"));
+ _brushMenu = _styleMenu->addMenu(tr("&Brush"));
 
- _colorSubMenu = _penMenu->addMenu("&Color");
- _widthSubMenu = _penMenu->addMenu("&Width");
- _lineSubMenu = _penMenu->addMenu("&Line");
+ _colorSubMenu = _penMenu->addMenu(tr("&Color"));
+ _widthSubMenu = _penMenu->addMenu(tr("&Width"));
+ _lineSubMenu = _penMenu->addMenu(tr("&Line"));
 
- _brushColorSubMenu = _brushMenu->addMenu("&Couleur");
- _patternSubMenu = _brushMenu->addMenu("&Fill");
+ _brushColorSubMenu = _brushMenu->addMenu(tr("&Color"));
+ _patternSubMenu = _brushMenu->addMenu(tr("&Fill"));
 
 }
 //--------------------------------------------------------------------------------
@@ -179,7 +179,8 @@ void PaintWindow::_createActions(void) {
   _verPattern = new QAction(tr("&Lignes verticales"),  this);
   _crossPattern = new QAction(tr("&Cadrillage"),  this);
   
-  _brushColor = new QAction(tr("&Couleur"), this);
+  _brushColor = new QAction(tr("&Color"), this);
+  _font = new QAction(tr("&Font"), this);
 
   _solidPattern->setCheckable(true);
   _dense1Pattern->setCheckable(true);
@@ -283,6 +284,9 @@ void PaintWindow::_connectActions(void) {
     _toolsPattern->addAction(_crossPattern);
 
     _brushColorSubMenu->addAction(_brushColor);
+    
+    _styleMenu->addSeparator();
+    _styleMenu->addAction(_font);
 
     _helpMenu->addAction(_aboutAct);
 }
@@ -332,6 +336,8 @@ void PaintWindow::_connectSignals(void) {
     connect(_horPattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
     connect(_verPattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
     connect(_crossPattern,SIGNAL(activated()),_signalMapperPattern, SLOT(map()));
+    
+    connect(_font,SIGNAL(triggered()),this, SLOT(_chooseFont()));
 
     connect(_aboutAct, SIGNAL(triggered()),this, SLOT(_about()));
 
@@ -354,7 +360,7 @@ void PaintWindow::_connectSignals(void) {
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_about(void) {
-    QMessageBox::information( this,"About Us","Developpeur : Mathieu ALLAIN \n Email : maaath29@gmail.com","Au boulot !");
+    QMessageBox::information( this,"About Us","Developpers :\nMathieu ALLAIN <maaath29@gmail.com>\nFlorent LE PRINCE <f1leprin@enib.fr>","OK");
 }
 //--------------------------------------------------------------------------------
 void PaintWindow::_newFile(void)  {
@@ -426,6 +432,10 @@ void PaintWindow::showPopUp(QPoint value) {
 
 void PaintWindow::_brushChooseColor(void) {
   _area->_brushChooseColor();
+}
+
+void PaintWindow::_chooseFont(void) {
+  _area->_chooseFont();
 }
 
 void PaintWindow::_resetFile(void)  {

@@ -41,6 +41,7 @@ class PaintWindow : public QMainWindow
     void _saveAsFile(void);
     void _about(void);
     void _brushChooseColor(void);
+    void _chooseFont(void);
     void _resetFile(void);
   private :
    void _createMenus(void);
@@ -64,6 +65,7 @@ class PaintWindow : public QMainWindow
    QAction *_littleWidth, *_middleWidth, *_hightWidth;
    QAction *_solidLine, *_dashLine, *_dotLine, *_dashDotLine, *_dashDotDotLine;
    QAction *_brushColor, *_solidPattern, *_dense1Pattern, *_dense2Pattern, *_dense3Pattern, *_dense4Pattern, *_dense5Pattern, *_horPattern, *_verPattern, *_crossPattern;
+   QAction *_font;
    // mapping 
    QSignalMapper *_signalMapper, *_signalMapperColor, *_signalMapperWidth, *_signalMapperLine, *_signalMapperPattern;
    //Dialog Box
