@@ -8,12 +8,14 @@ Editeur graphique genre Paint réalisé en C++ avec Qt
 - Ouvrir, sauvegarder, quitter, clear ...
 
 <h3> Utilisation </h3>
+
 <h4> Texte </h4>
 - Tracez le rectangle qui contiendra le texte
 - Écrivez du texte
 - Vous pouvez à tout moment changer la police
 - Vous pouvez également effacer tout le texte avec ECHAP n'importe quand
 - Validez en traçant une autre zone de texte
+
 <h4> Polygone </h4>
 - Cliquez pour placer les points de votre polygone un par un
 - Une fois tous les points placés, appuyez sur ENTRER pour fermer la figure
